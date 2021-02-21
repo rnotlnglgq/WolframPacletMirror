@@ -44,6 +44,7 @@ jobs:
         echo $'StrictHostKeyChecking no\n UserKnownHostsFile /dev/null\n Host wlgiteeauto\nHostName gitee.com\n User rnotlnglgq\n IdentityFile ~/.ssh/rnotlnglgq_auto' > ~/.ssh/config
     - name: Git Clone
       run: |
+        mv .git .git_bak
         git clone git@wlgiteeauto:rnotlnglgq/WolframPacletGeneral.git
         cd WolframPacletGeneral
         git pull
@@ -53,9 +54,9 @@ jobs:
         /usr/bin/wolframscript -code 'NewestPaclet["SiteInfo" -> NewestSiteInfo[]] //PickNewestPaclet //UpdatePaclet;Print@BuildSiteInfo[]'
     - name: Git Push
       run: |
-        rm -rf .git
-        git init
-        git remote add gitee git@wlgiteeauto:rnotlnglgq/WolframPacletGeneral.git
+#        rm -rf .git
+#        git init
+#        git remote add gitee git@wlgiteeauto:rnotlnglgq/WolframPacletGeneral.git
         git config --local user.name rnotlnglgq_auto
         git config --local user.email rnotlnglgq@outlook.com
         git add -A
