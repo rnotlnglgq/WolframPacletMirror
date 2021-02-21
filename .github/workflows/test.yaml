@@ -53,8 +53,11 @@ jobs:
         /usr/bin/wolframscript -code 'NewestPaclet["SiteInfo" -> NewestSiteInfo[]] //PickNewestPaclet //UpdatePaclet;Print@BuildSiteInfo[]'
     - name: Git Push
       run: |
+        rm -rf .git
+        git init
+        git remote add gitee git@wlgiteeauto:rnotlnglgq/WolframPacletGeneral.git
         git config --local user.name rnotlnglgq_auto
         git config --local user.email rnotlnglgq@outlook.com
         git add -A
         git commit -m "auto"
-        git push origin master
+        git push gitee master
