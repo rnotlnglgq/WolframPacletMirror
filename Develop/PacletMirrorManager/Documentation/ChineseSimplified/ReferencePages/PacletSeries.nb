@@ -1,0 +1,738 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     32044,        730]
+NotebookOptionsPosition[     28297,        654]
+NotebookOutlinePosition[     29279,        681]
+CellTagsIndexPosition[     29236,        678]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData["\"\<PACLET MIRROR MANAGER \:7a0b\:5e8f\:5305\:7b26\:53f7\>\""], \
+"AnchorBarGridGenerator",
+ CellLabel->"",
+ CellID->130517461,ExpressionUUID->"4e288c3f-6065-4ee6-b56d-caef8734a2aa"],
+
+Cell[BoxData["\"\<PacletMirrorManager`\>\""], "ContextNameCellGenerator",
+ CellLabel->"",
+ CellID->383744776,ExpressionUUID->"50c5e7c2-23aa-456f-83d3-4d0bb7d4cfde"],
+
+Cell[BoxData["\"\<PacletSeries\>\""], "ObjectNameGridGenerator",
+ CellLabel->"",
+ CellID->91360357,ExpressionUUID->"6c6ec70e-bc29-4a2c-817f-39774e7c6771"],
+
+Cell[BoxData[GridBox[{
+   {
+    RowBox[{"LinkedExpression", "[", 
+     RowBox[{"PacletSeries", ",", 
+      RowBox[{"TI", "@", "\"\<string\>\""}], ",", " ", 
+      RowBox[{"TI", "@", "\"\<siteInfo\>\""}]}], "]"}], 
+    RowBox[{"RowBox", "@", 
+     RowBox[{"{", 
+      RowBox[{"\"\<\:4ece\>\"", ",", 
+       RowBox[{"TI", "@", "\"\<siteInfo\>\""}], ",", 
+       "\"\<\:4e2d\:641c\:7d22\:5305\:7cfb\:5217\>\"", ",", 
+       RowBox[{"TI", "@", "\"\<string.\>\""}]}], "}"}]}]},
+   {
+    RowBox[{"LinkedExpression", "[", 
+     RowBox[{"PacletSeries", ",", 
+      RowBox[{"TI", "@", "\"\<stringList\>\""}], ",", " ", 
+      RowBox[{"TI", "@", "\"\<siteInfo\>\""}]}], "]"}], 
+    RowBox[{"RowBox", "@", 
+     RowBox[{"{", 
+      RowBox[{"\"\<\:76f8\:5f53\:4e8e\>\"", ",", " ", 
+       RowBox[{"LinkedExpression", "[", 
+        RowBox[{"PacletSeries", ",", 
+         RowBox[{"LinkedExpression", "[", 
+          RowBox[{"StringRiffle", ",", 
+           RowBox[{"TI", "@", "\"\<stringList\>\""}], ",", " ", 
+           "\"\<\\\"_\\\"\>\""}], "]"}], ",", " ", 
+         RowBox[{"TI", "@", "\"\<siteInfo\>\""}]}], "]"}], ",", " ", 
+       "\"\<.\>\""}], "}"}]}]},
+   {
+    RowBox[{"LinkedExpression", "[", 
+     RowBox[{"PacletSeries", ",", 
+      RowBox[{"TI", "@", "\"\<spec\>\""}]}], "]"}], 
+    RowBox[{"RowBox", "@", 
+     RowBox[{"{", 
+      RowBox[{"\"\<\:76f8\:5f53\:4e8e\>\"", ",", " ", 
+       RowBox[{"LinkedExpression", "[", 
+        RowBox[{"PacletSeries", ",", 
+         RowBox[{"TI", "@", "\"\<spec\>\""}], ",", " ", 
+         RowBox[{"LinkedExpression", "[", "OriginalSiteInfo", "]"}]}], "]"}], 
+       ",", " ", "\"\<.\>\""}], "}"}]}]}
+  }]], "UsageGenerator",
+ CellLabel->"",
+ CellID->849769453,ExpressionUUID->"cf7f19f8-2432-47f2-9665-d124e2f3e3ad"],
+
+Cell[BoxData["\"\<\:66f4\:591a\:4fe1\:606f\>\""], "NotesSectionGenerator",
+ CellID->657637907,ExpressionUUID->"af22d95a-e3ce-4822-960a-b84dd0342ace"],
+
+Cell[BoxData[
+ RowBox[{"RowBox", "@", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"SymbolLink", "[", "PacletSeries", "]"}], ",", 
+    "\"\<\:57fa\:4e8e\>\"", ",", 
+    RowBox[{"SymbolLink", "[", "PacletSeriesPart", "]"}], ",", 
+    "\"\<\:3002\>\""}], "}"}]}]], "NotesGenerator",
+ CellID->128158906,ExpressionUUID->"c49dbfa8-4c1c-4775-a2a8-f6f28e13ad36"],
+
+Cell[BoxData[
+ RowBox[{"RowBox", "@", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"SymbolLink", "[", "PacletSeriesPart", "]"}], ",", 
+    "\"\<\:8fd4\:56de\:7cfb\:5217\:4e2d\:641c\:7d22\:5230\:7684\:6240\:6709\
+\:5305\:ff0c\:800c\>\"", ",", 
+    RowBox[{"SymbolLink", "[", "PacletSeries", "]"}], ",", 
+    "\"\<\:53ea\:8fd4\:56de\:6700\:65b0\:7248\:672c\:3002\>\""}], 
+   "}"}]}]], "NotesGenerator",
+ CellID->284241497,ExpressionUUID->"048d580b-f0d9-43e7-9ef7-f5b385c711e9"],
+
+Cell[BoxData[GridBox[{
+   {"\"\<\:8303\:4f8b\>\"", "3"}
+  }]], "PrimaryExamplesSectionGenerator",
+ CellID->56250275,ExpressionUUID->"7ab652be-9274-4edf-926b-c0bea7450838"],
+
+Cell[BoxData[GridBox[{
+   {"\"\<\:57fa\:672c\:8303\:4f8b\>\"", "2"}
+  }]], "ExampleSectionGenerator",
+ CellID->115073414,ExpressionUUID->"80ba8784-a29a-4fd2-9d49-ac1714e15685"],
+
+Cell[BoxData["\"\<\:641c\:7d22CNN\:7cfb\:5217\:4e2d\:5404\:5305\:7684\:6700\
+\:65b0\:7248\:672c\>\""], "ExampleTextGenerator",
+ CellID->457080754,ExpressionUUID->"081ddedc-d7c2-4949-adfc-3eb39c0d4490"],
+
+Cell[BoxData[
+ RowBox[{"<<", "PacletMirrorManager`"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->823633142,ExpressionUUID->"d328880c-751c-4a28-9699-c7bcf659c81a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PacletSeries", "[", 
+  RowBox[{"{", "\"\<CNN\>\"", "}"}], "]"}]], "Input",
+ CellLabel->"In[5]:=",
+ CellID->18908,ExpressionUUID->"3a4899da-20ad-4390-a1eb-2c3b8494d270"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Paclet", "[", 
+    RowBox[{
+     RowBox[{"Name", "\[Rule]", "\<\"CNN_ClassificationModel2\"\>"}], ",", 
+     RowBox[{"Version", "\[Rule]", "\<\"1.2\"\>"}], ",", 
+     RowBox[{"MathematicaVersion", "\[Rule]", "\<\"10.1+\"\>"}]}], "]"}], ",", 
+   RowBox[{"Paclet", "[", 
+    RowBox[{
+     RowBox[{"Name", "\[Rule]", "\<\"CNN_ClassificationModel3\"\>"}], ",", 
+     RowBox[{"Version", "\[Rule]", "\<\"0.9\"\>"}], ",", 
+     RowBox[{"MathematicaVersion", "\[Rule]", "\<\"10+\"\>"}]}], "]"}], ",", 
+   RowBox[{"Paclet", "[", 
+    RowBox[{
+     RowBox[{"Name", "\[Rule]", "\<\"CNN_GraphData\"\>"}], ",", 
+     RowBox[{"Version", "\[Rule]", "\<\"1.5\"\>"}], ",", 
+     RowBox[{"MathematicaVersion", "\[Rule]", "\<\"10+\"\>"}]}], "]"}], ",", 
+   RowBox[{"Paclet", "[", 
+    RowBox[{
+     RowBox[{"Name", "\[Rule]", "\<\"CNN_GraphData4\"\>"}], ",", 
+     RowBox[{"Version", "\[Rule]", "\<\"2.0\"\>"}], ",", 
+     RowBox[{"MathematicaVersion", "\[Rule]", "\<\"11.1+\"\>"}]}], "]"}], ",", 
+   RowBox[{"Paclet", "[", 
+    RowBox[{
+     RowBox[{
+     "Name", "\[Rule]", "\<\"CNN_ClassificationModel4_Automatic\"\>"}], ",", 
+     RowBox[{"Version", "\[Rule]", "\<\"1.1\"\>"}], ",", 
+     RowBox[{"MathematicaVersion", "\[Rule]", "\<\"10.2+\"\>"}]}], "]"}], ",", 
+   RowBox[{"Paclet", "[", 
+    RowBox[{
+     RowBox[{"Name", "\[Rule]", "\<\"CNN_ClassificationModel4_Quality1\"\>"}],
+      ",", 
+     RowBox[{"Version", "\[Rule]", "\<\"1.0\"\>"}], ",", 
+     RowBox[{"MathematicaVersion", "\[Rule]", "\<\"10.2+\"\>"}]}], "]"}]}], 
+  "}"}]], "Output",
+ CellContext->"Cell$$28393`",
+ CellLabel->"Out[5]=",
+ CellID->98964797,ExpressionUUID->"170f05c1-c9b6-49e9-9be1-1d0cf3510b11"]
+}, Open  ]],
+
+Cell[BoxData["\"\<\:4f7f\:7528\:5b57\:7b26\:4e32\:6307\:5b9a\:7cfb\:5217\>\""]\
+, "ExampleTextGenerator",
+ CellID->49872124,ExpressionUUID->"6adec171-d4ab-4f79-9a8e-dff629931731"],
+
+Cell[BoxData[
+ RowBox[{"<<", "PacletMirrorManager`"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->433936037,ExpressionUUID->"43eccc12-f1d9-43d4-8192-8135bff2a077"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PacletSeries", "[", "\"\<GraphData_Index\>\"", "]"}]], "Input",
+ CellLabel->"In[5]:=",
+ CellID->43974237,ExpressionUUID->"a1e318c6-1338-494b-919c-6515f77e8eb6"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Paclet", "[", 
+    RowBox[{
+     RowBox[{"Name", "\[Rule]", "\<\"CNN_ClassificationModel2\"\>"}], ",", 
+     RowBox[{"Version", "\[Rule]", "\<\"1.2\"\>"}], ",", 
+     RowBox[{"MathematicaVersion", "\[Rule]", "\<\"10.1+\"\>"}]}], "]"}], ",", 
+   RowBox[{"Paclet", "[", 
+    RowBox[{
+     RowBox[{"Name", "\[Rule]", "\<\"CNN_ClassificationModel3\"\>"}], ",", 
+     RowBox[{"Version", "\[Rule]", "\<\"0.9\"\>"}], ",", 
+     RowBox[{"MathematicaVersion", "\[Rule]", "\<\"10+\"\>"}]}], "]"}], ",", 
+   RowBox[{"Paclet", "[", 
+    RowBox[{
+     RowBox[{"Name", "\[Rule]", "\<\"CNN_GraphData\"\>"}], ",", 
+     RowBox[{"Version", "\[Rule]", "\<\"1.5\"\>"}], ",", 
+     RowBox[{"MathematicaVersion", "\[Rule]", "\<\"10+\"\>"}]}], "]"}], ",", 
+   RowBox[{"Paclet", "[", 
+    RowBox[{
+     RowBox[{"Name", "\[Rule]", "\<\"CNN_GraphData4\"\>"}], ",", 
+     RowBox[{"Version", "\[Rule]", "\<\"2.0\"\>"}], ",", 
+     RowBox[{"MathematicaVersion", "\[Rule]", "\<\"11.1+\"\>"}]}], "]"}], ",", 
+   RowBox[{"Paclet", "[", 
+    RowBox[{
+     RowBox[{
+     "Name", "\[Rule]", "\<\"CNN_ClassificationModel4_Automatic\"\>"}], ",", 
+     RowBox[{"Version", "\[Rule]", "\<\"1.1\"\>"}], ",", 
+     RowBox[{"MathematicaVersion", "\[Rule]", "\<\"10.2+\"\>"}]}], "]"}], ",", 
+   RowBox[{"Paclet", "[", 
+    RowBox[{
+     RowBox[{"Name", "\[Rule]", "\<\"CNN_ClassificationModel4_Quality1\"\>"}],
+      ",", 
+     RowBox[{"Version", "\[Rule]", "\<\"1.0\"\>"}], ",", 
+     RowBox[{"MathematicaVersion", "\[Rule]", "\<\"10.2+\"\>"}]}], "]"}]}], 
+  "}"}]], "Output",
+ CellContext->"Cell$$28393`",
+ CellLabel->"Out[5]=",
+ CellID->275022398,ExpressionUUID->"663d9b90-2df8-42c2-b6da-c99d293a67be"]
+}, Open  ]],
+
+Cell[BoxData[GridBox[{
+   {"\"\<\:5185\:90e8\:5b9e\:73b0\>\"", "1"}
+  }]], "ExampleSectionGenerator",
+ CellID->570633764,ExpressionUUID->"1bd5c37b-6ed7-4145-b1d7-48c6fa562bcd"],
+
+Cell[BoxData[
+ RowBox[{"<<", "PacletMirrorManager`"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->451140207,ExpressionUUID->"12782266-dbf0-4d4d-a580-73ff9a19d821"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"First", "/@", 
+   RowBox[{"Cases", "[", 
+    RowBox[{
+     RowBox[{
+     "PacletSeriesPart", "[", "\"\<ExampleData_AerialImage\>\"", "]"}], ",", 
+     RowBox[{"{", "__Paclet", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "Infinity"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"%", "//", "PacletRegularize"}]}], "Input",
+ CellLabel->"In[8]:=",
+ CellID->590727474,ExpressionUUID->"a7c16f90-da98-4450-beec-ac209ffc7c2c"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_Earth\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_Earth", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_FosterCity\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_FosterCity", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_Oakland\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_Oakland", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_Oakland1\"\>", 
+     ",", "\<\"6.0.1\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_Oakland1", "Version" -> "6.0.1", 
+     "MathematicaVersion" -> "6.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_Oakland2\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_Oakland2", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_Pentagon\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_Pentagon", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_Richmond\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_Richmond", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_Richmond1\"\>", 
+     ",", "\<\"6.0.1\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_Richmond1", "Version" -> "6.0.1", 
+     "MathematicaVersion" -> "6.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_Richmond2\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_Richmond2", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanDiego\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanDiego", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanDiego1\"\>", 
+     ",", "\<\"6.0.1\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanDiego1", "Version" -> "6.0.1", 
+     "MathematicaVersion" -> "6.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanDiego10\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanDiego10", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanDiego11\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanDiego11", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanDiego12\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanDiego12", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanDiego13\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanDiego13", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanDiego2\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanDiego2", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanDiego3\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanDiego3", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanDiego4\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanDiego4", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanDiego5\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanDiego5", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanDiego6\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanDiego6", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanDiego7\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanDiego7", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanDiego8\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanDiego8", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanDiego9\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanDiego9", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanFrancisco\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanFrancisco", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanFrancisco1\"\>", 
+     ",", "\<\"6.0.1\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanFrancisco1", "Version" -> "6.0.1", 
+     "MathematicaVersion" -> "6.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanFrancisco2\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanFrancisco2", "Version" -> "9.0.0.3",
+      "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanFrancisco3\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanFrancisco3", "Version" -> "9.0.0.3",
+      "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanFrancisco4\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanFrancisco4", "Version" -> "9.0.0.3",
+      "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanFrancisco5\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanFrancisco5", "Version" -> "9.0.0.3",
+      "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanFrancisco6\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanFrancisco6", "Version" -> "9.0.0.3",
+      "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanFrancisco7\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanFrancisco7", "Version" -> "9.0.0.3",
+      "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanFrancisco8\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanFrancisco8", "Version" -> "9.0.0.3",
+      "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_SanFrancisco9\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_SanFrancisco9", "Version" -> "9.0.0.3",
+      "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_Shreveport\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_Shreveport", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_Stockton\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_Stockton", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_Stockton1\"\>", 
+     ",", "\<\"6.0.1\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_Stockton1", "Version" -> "6.0.1", 
+     "MathematicaVersion" -> "6.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_Stockton2\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_Stockton2", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_Stockton3\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_Stockton3", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_Stockton4\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_Stockton4", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_Stockton5\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_Stockton5", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_Stockton6\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_Stockton6", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_WashingtonIR\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_WashingtonIR", "Version" -> "9.0.0.3", 
+     "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]], ",", 
+   InterpretationBox[
+    RowBox[{
+    "Paclet", "[", "\<\"ExampleData_AerialImage_WoodlandHills\"\>", 
+     ",", "\<\"9.0.0.3\"\>", ",", "<>", "]"}],
+    PacletManager`Paclet[
+    "Name" -> "ExampleData_AerialImage_WoodlandHills", "Version" -> "9.0.0.3",
+      "MathematicaVersion" -> "9.0+", "BackwardCompatible" -> "*", 
+     "Extensions" -> {{"Resource", "Root" -> "Data"}}]]}], "}"}]], "Output",
+ CellContext->"Notebook$$44$938549`",
+ CellLabel->"Out[9]=",
+ CellID->359660291,ExpressionUUID->"240809a8-b8ac-4dfa-8472-357e8fcc2efe"]
+}, Open  ]],
+
+Cell[BoxData[GridBox[{
+   {"PacletSeriesPart"},
+   {"GroupPacletSeries"}
+  }]], "SeeAlsoGenerator",
+ CellID->34603432,ExpressionUUID->"7fa9335b-f5a0-4445-adf8-997b9ec7a56c"],
+
+Cell[BoxData[
+ RowBox[{"{", "\[IndentingNewLine]", 
+  RowBox[{"\"\<Metadata\>\"", " ", "->", " ", 
+   RowBox[{"{", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{
+     "\"\<context\>\"", " ", "->", " ", "\"\<PacletMirrorManager`\>\""}], ",",
+      "\n", "\t\t", 
+     RowBox[{"\"\<keywords\>\"", " ", "->", " ", 
+      RowBox[{"{", "\n", "\t\t\t", 
+       RowBox[{"\"\<search paclet\>\"", ",", "\"\<search paclets\>\""}], "\n",
+        "\t\t", "}"}]}], ",", "\n", "\t\t", 
+     RowBox[{"\"\<specialkeywords\>\"", " ", "->", " ", 
+      RowBox[{"{", "}"}]}], ",", "\n", "\t\t", 
+     RowBox[{"\"\<language\>\"", " ", "->", " ", "\"\<zh\>\""}], ",", "\n", 
+     "\t\t", 
+     RowBox[{"\"\<status\>\"", " ", "->", " ", "\"\<None\>\""}], ",", "\n", 
+     "\t\t", 
+     RowBox[{"\"\<summary\>\"", " ", "->", " ", 
+      RowBox[{"PacletSeries", "::", "usage"}]}], ",", "\n", "\t\t", 
+     RowBox[{"\"\<synonyms\>\"", " ", "->", " ", 
+      RowBox[{"{", 
+       RowBox[{"\"\<mathematica plot\>\"", ",", " ", "\"\<plot\>\""}], 
+       "}"}]}], ",", "\n", "\t\t", 
+     RowBox[{"\"\<tabletags\>\"", " ", "->", " ", 
+      RowBox[{"{", "}"}]}], ",", "\n", "\t\t", 
+     RowBox[{"\"\<title\>\"", " ", "->", " ", "\"\<PacletSeries\>\""}], ",", 
+     "\n", "\t\t", 
+     RowBox[{"\"\<titlemodifier\>\"", " ", "->", " ", "\"\<\>\""}], ",", "\n",
+      "\t\t", 
+     RowBox[{"\"\<windowtitle\>\"", " ", "->", " ", "\"\<PacletSeries\>\""}], 
+     ",", "\n", "\t\t", 
+     RowBox[{"\"\<type\>\"", " ", "->", " ", "\"\<Symbol\>\""}], ",", "\n", 
+     "\t\t", 
+     RowBox[{"\"\<uri\>\"", " ", "->", " ", 
+      RowBox[{
+       RowBox[{"ConversionHandler", "[", "\"\<URI\>\"", "]"}], "@", 
+       "PacletSeries"}]}], ",", "\n", "\t\t", 
+     RowBox[{"\"\<WorkflowDockedCell\>\"", " ", "->", " ", "\"\<\>\""}]}], 
+    "\n", "\t", "}"}]}], "\[IndentingNewLine]", "}"}]], "RuleSetter",
+ CellID->992300885,ExpressionUUID->"cc710f5d-489f-4c2d-af3d-7ec8d3899e09"]
+},
+WindowSize->{1264, 661},
+WindowMargins->{{-8, Automatic}, {Automatic, 0}},
+TaggingRules->{
+ "DocuToolsSettings" -> {
+   "$ShowPacletVariablesPrompt" -> "True", "$ApplicationName" -> "JLink", 
+    "$LinkBase" -> "PacletMirrorManager", "$ApplicationDirectory" -> 
+    "X:\\Document\\Project\\BIG\\WolframPacletServer\\Develop\\Package\\\
+PacletMirrorManager\\", "$DocumentationDirectory" -> 
+    "X:\\Document\\Project\\BIG\\WolframPacletServer\\Develop\\Package\\\
+PacletMirrorManager\\Documentation\\ChineseSimplified\\"}, 
+  "Metadata" -> {"WorkflowDockedCell" -> ""}, "LinkTrails" -> "", 
+  "SearchTextTranslated" -> ""},
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (2019\:5e745\:670818\
+\:65e5)",
+StyleDefinitions->FrontEnd`FileName[{"DocumentationCreator"}, "Symbol.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 196, 3, 31, "AnchorBarGridGenerator",ExpressionUUID->"4e288c3f-6065-4ee6-b56d-caef8734a2aa",
+ CellID->130517461],
+Cell[757, 25, 164, 2, 31, "ContextNameCellGenerator",ExpressionUUID->"50c5e7c2-23aa-456f-83d3-4d0bb7d4cfde",
+ CellID->383744776],
+Cell[924, 29, 154, 2, 31, "ObjectNameGridGenerator",ExpressionUUID->"6c6ec70e-bc29-4a2c-817f-39774e7c6771",
+ CellID->91360357],
+Cell[1081, 33, 1755, 42, 63, "UsageGenerator",ExpressionUUID->"cf7f19f8-2432-47f2-9665-d124e2f3e3ad",
+ CellID->849769453],
+Cell[2839, 77, 149, 1, 31, "NotesSectionGenerator",ExpressionUUID->"af22d95a-e3ce-4822-960a-b84dd0342ace",
+ CellID->657637907],
+Cell[2991, 80, 351, 8, 42, "NotesGenerator",ExpressionUUID->"c49dbfa8-4c1c-4775-a2a8-f6f28e13ad36",
+ CellID->128158906],
+Cell[3345, 90, 471, 10, 42, "NotesGenerator",ExpressionUUID->"048d580b-f0d9-43e7-9ef7-f5b385c711e9",
+ CellID->284241497],
+Cell[3819, 102, 171, 3, 31, "PrimaryExamplesSectionGenerator",ExpressionUUID->"7ab652be-9274-4edf-926b-c0bea7450838",
+ CellID->56250275],
+Cell[3993, 107, 176, 3, 31, "ExampleSectionGenerator",ExpressionUUID->"80ba8784-a29a-4fd2-9d49-ac1714e15685",
+ CellID->115073414],
+Cell[4172, 112, 201, 2, 31, "ExampleTextGenerator",ExpressionUUID->"081ddedc-d7c2-4949-adfc-3eb39c0d4490",
+ CellID->457080754],
+Cell[4376, 116, 162, 3, 26, "Input",ExpressionUUID->"d328880c-751c-4a28-9699-c7bcf659c81a",
+ CellID->823633142],
+Cell[CellGroupData[{
+Cell[4563, 123, 192, 4, 26, "Input",ExpressionUUID->"3a4899da-20ad-4390-a1eb-2c3b8494d270",
+ CellID->18908],
+Cell[4758, 129, 1713, 38, 100, "Output",ExpressionUUID->"170f05c1-c9b6-49e9-9be1-1d0cf3510b11",
+ CellID->98964797]
+}, Open  ]],
+Cell[6486, 170, 179, 2, 31, "ExampleTextGenerator",ExpressionUUID->"6adec171-d4ab-4f79-9a8e-dff629931731",
+ CellID->49872124],
+Cell[6668, 174, 162, 3, 26, "Input",ExpressionUUID->"43eccc12-f1d9-43d4-8192-8135bff2a077",
+ CellID->433936037],
+Cell[CellGroupData[{
+Cell[6855, 181, 184, 3, 26, "Input",ExpressionUUID->"a1e318c6-1338-494b-919c-6515f77e8eb6",
+ CellID->43974237],
+Cell[7042, 186, 1714, 38, 100, "Output",ExpressionUUID->"663d9b90-2df8-42c2-b6da-c99d293a67be",
+ CellID->275022398]
+}, Open  ]],
+Cell[8771, 227, 176, 3, 31, "ExampleSectionGenerator",ExpressionUUID->"1bd5c37b-6ed7-4145-b1d7-48c6fa562bcd",
+ CellID->570633764],
+Cell[8950, 232, 162, 3, 26, "Input",ExpressionUUID->"12782266-dbf0-4d4d-a580-73ff9a19d821",
+ CellID->451140207],
+Cell[CellGroupData[{
+Cell[9137, 239, 484, 13, 60, "Input",ExpressionUUID->"a7c16f90-da98-4450-beec-ac209ffc7c2c",
+ CellID->590727474],
+Cell[9624, 254, 16546, 349, 356, "Output",ExpressionUUID->"240809a8-b8ac-4dfa-8472-357e8fcc2efe",
+ CellID->359660291]
+}, Open  ]],
+Cell[26185, 606, 173, 4, 41, "SeeAlsoGenerator",ExpressionUUID->"7fa9335b-f5a0-4445-adf8-997b9ec7a56c",
+ CellID->34603432],
+Cell[26361, 612, 1932, 40, 331, "RuleSetter",ExpressionUUID->"cc710f5d-489f-4c2d-af3d-7ec8d3899e09",
+ CellID->992300885]
+}
+]
+*)
+
