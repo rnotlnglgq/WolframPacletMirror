@@ -46,7 +46,9 @@ jobs:
       run: |
         mv .git .git_bak
         git clone git@wlgiteeauto:rnotlnglgq/WolframPacletGeneral.git
+        ls -al
         cd WolframPacletGeneral
+        ls -al
     - name: Update Paclets
       run: |
         /usr/bin/wolframscript -code 'NewestPaclet["SiteInfo" -> NewestSiteInfo[]] //PickNewestPaclet //UpdatePaclet;Print@BuildSiteInfo[]'
