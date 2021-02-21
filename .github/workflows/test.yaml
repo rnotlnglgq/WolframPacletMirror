@@ -47,10 +47,8 @@ jobs:
         mv .git .git_bak
         git clone git@wlgiteeauto:rnotlnglgq/WolframPacletGeneral.git
         cd WolframPacletGeneral
-        git pull
     - name: Update Paclets
       run: |
-        cd WolframPacletGeneral
         /usr/bin/wolframscript -code 'NewestPaclet["SiteInfo" -> NewestSiteInfo[]] //PickNewestPaclet //UpdatePaclet;Print@BuildSiteInfo[]'
     - name: Git Push
       run: |
@@ -58,4 +56,4 @@ jobs:
         git config --local user.email rnotlnglgq@outlook.com
         git add -A
         git commit -m "auto"
-        git push gitee master
+        git push origin master
