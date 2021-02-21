@@ -2,7 +2,7 @@
 
 Paclet[
 	Name -> "PacletMirrorManager",
-	Version -> "0.14.0", (* Try to support PM v4. *)
+	Version -> "0.14.1", (* Try to support PM v4 again: fix PacletDeregularize *)
 	WolframVersion -> "11.0+", (* Not tested. *)
 	Description -> "Provide tools for the moderation and management of the mirror.",
 	Root -> ".",
