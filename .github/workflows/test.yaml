@@ -16,7 +16,7 @@ env:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    name: "test git"
+    name: "test "
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -44,16 +44,19 @@ jobs:
         echo $'StrictHostKeyChecking no\n UserKnownHostsFile /dev/null\n Host wlgiteeauto\nHostName gitee.com\n User rnotlnglgq\n IdentityFile ~/.ssh/rnotlnglgq_auto' > ~/.ssh/config
     - name: Git Clone
       run: |
-        git clone git@wlgiteeauto:rnotlnglgq/WolframPacletGeneral.git
+        git clone git@wlgiteeauto:rnotlnglgq/WolframPacletExtended4.git
     - name: Update Paclets
       run: |
-        cd WolframPacletGeneral
-        /usr/bin/wolframscript -code 'NewestPaclet["SiteInfo" -> NewestSiteInfo[]] //PickNewestPaclet //UpdatePaclet;Print@BuildSiteInfo[]'
+        cd WolframPacletExtended4
+        /usr/bin/wolframscript -code 'NewestPaclet["SiteInfo" -> NewestSiteInfo[]] //PickNewestPaclet //Function[Print@#;#] //UpdatePaclet;Print@BuildSiteInfo[]'
     - name: Git Push
       run: |
-        cd WolframPacletGeneral
+        cd WolframPacletExtended4
+        rm -rf .git
+        git init
+        git remote add origin git@wlgiteeauto:rnotlnglgq/WolframPacletExtended4.git
         git config --local user.name rnotlnglgq_auto
         git config --local user.email rnotlnglgq@outlook.com
         git add -A
         git commit -m "auto"
-        git push origin master
+        git push -f origin master
