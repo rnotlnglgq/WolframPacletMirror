@@ -16,10 +16,11 @@
 PacletRegularize[paclet_Paclet] := paclet /. (key_Symbol -> value_) :> (SymbolName@key -> value)
 PacletRegularize[paclets:_[__Paclet]] := PacletRegularize /@ paclets
 
+fromPacletObject[po_PacletObject] := Paclet@@Normal@First@po
 
 (* ::Code::Initialization:: *)
 PacletDeregularize[paclet_Paclet] := paclet /. (key_String -> value_) :> (Symbol@key -> value)
-PacletDeregularize[paclet_PacletObject] := Paclet@@Normal@First@paclet //PacletDeregularize
+PacletDeregularize[paclet_PacletObject] := fromPacletObject@paclet //PacletDeregularize
 PacletDeregularize[paclets:_[__Paclet|__PacletObject]] := PacletDeregularize /@ paclets
 
 
