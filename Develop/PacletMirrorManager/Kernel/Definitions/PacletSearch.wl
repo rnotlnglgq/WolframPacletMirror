@@ -16,10 +16,10 @@ groupByDepth = GroupBy[Length@Keys@# - 1 &]@*Normal;
 
 groupByPlatform = GroupBy[
 	#,
-	getPacletInfo[{"SystemID", "Qualifier"}]
+	PacletMirrorManager`Private`getPacletValue[{"SystemID", "Qualifier"}]
 ]&;
 
-crossPlatformQ = getPacletInfo[{"SystemID", "Qualifier"}]@# === {All, ""} &;
+crossPlatformQ = PacletMirrorManager`Private`getPacletValue[{"SystemID", "Qualifier"}]@# === {All, ""} &;
 
 splitSeriesName = KeyMap[StringSplit[#, "_"]&];
 
@@ -76,7 +76,7 @@ KernelVersionMatchQ[spec_String][version_String] := Which[
 			1
 		]
 ]
-KernelVersionMatchQ[paclet_Paclet][version_String] := KernelVersionMatchQ[getPacletInfo["WolframVersion"]@PacletRegularize[paclet]]@version
+KernelVersionMatchQ[paclet_Paclet][version_String] := KernelVersionMatchQ[PacletMirrorManager`Private`getPacletValue["WolframVersion"]@PacletRegularize[paclet]]@version
 KernelVersionMatchQ[spec_String][All] := True
 KernelVersionMatchQ[paclet_Paclet][All] := True
 

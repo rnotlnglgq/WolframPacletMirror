@@ -4,10 +4,11 @@
 (*Download*)
 
 
+(* ::Code::Initialization:: *)
 (* PacletManager`Package`PgetQualifiedName *)
 (* Paclet[___]["QualifiedName"] *)
 
-pacletToFileName[paclet_Paclet] := getPacletInfo["QualifiedName"]@paclet <> ".paclet"
+pacletToFileName[paclet_Paclet] := PacletMirrorManager`Private`getPacletValue["QualifiedName"]@paclet <> ".paclet"
 SetAttributes[pacletToFileName, Listable]
 
 $UseMirror = False;
@@ -29,6 +30,7 @@ SetAttributes[fileNameToURL, Listable]
 (*Note: your $ActivationKey should be valid to access the server.*)
 
 
+(* ::Code::Initialization:: *)
 DownloadRequest[fileName_String] := HTTPRequest[
 	fileNameToURL@fileName,
 	<|
@@ -49,6 +51,7 @@ DownloadRequest[] := DownloadRequest[""]
 (*wget Header*)
 
 
+(* ::Code::Initialization:: *)
 requestHeader := ExportString[
 	DownloadRequest[],
 	"HTTPRequest"
@@ -60,6 +63,7 @@ wgetHeader := StringTemplate["--header=\"``\""]/@requestHeader //StringRiffle
 (*wget URL input*)
 
 
+(* ::Code::Initialization:: *)
 ExportURLList[pacletNames:{__String}, urlFileName_:"url.txt"] := Export[urlFileName, StringRiffle[fileNameToURL@pacletNames, "\n"], "Text"]
 ExportURLList[paclets:_[__Paclet], urlFileName_:"url.txt"] := ExportURLList[pacletToFileName@paclets, urlFileName]
 
@@ -68,6 +72,7 @@ ExportURLList[paclets:_[__Paclet], urlFileName_:"url.txt"] := ExportURLList[pacl
 (*Download command*)
 
 
+(* ::Code::Initialization:: *)
 DownloadCommand[] := StringTemplate["wget `` -i ``"][wgetHeader, "url.txt"]
 
 
@@ -75,6 +80,7 @@ DownloadCommand[] := StringTemplate["wget `` -i ``"][wgetHeader, "url.txt"]
 (*Lazy Tool*)
 
 
+(* ::Code::Initialization:: *)
 DownloadPaclet[paclets:_[__Paclet]] := (
 	paclets //ExportURLList;
 	"!"<>DownloadCommand[] //Get
@@ -97,6 +103,7 @@ DownloadPaclet[] := DownloadPaclet@{}
 (*Fetch Newest SiteInfo*)
 
 
+(* ::Code::Initialization:: *)
 NewestSiteInfo[] := (
 	PacletSiteUpdate@PacletSite["http://pacletserver.wolfram.com", "Wolfram Research Paclet Server", "Local" -> False];
 	OriginalSiteInfo[]
@@ -115,6 +122,7 @@ NewestSiteInfo[] := (
 (*\:9700\:4ed4\:7ec6\:8003\:8651\:53ef\:80fd\:51fa\:73b0\:7684\:60c5\:51b5*)
 
 
+(* ::Code::Initialization:: *)
 (* related: PacletNewerQ *)
 NewestPaclet[_[paclets__Paclet], OptionsPattern[{"KernelVer" -> All, "SiteInfo" :> OriginalSiteInfo[]}]] := With[
 	{
@@ -125,9 +133,9 @@ NewestPaclet[_[paclets__Paclet], OptionsPattern[{"KernelVer" -> All, "SiteInfo" 
 		SelectFirst[
 			regSite,
 			And[
-				KernelVersionMatchQ[getPacletInfo["WolframVersion"]@#]@OptionValue@"KernelVer",
+				KernelVersionMatchQ[PacletMirrorManager`Private`getPacletValue["WolframVersion"]@#]@OptionValue@"KernelVer",
 				!OrderedQ@PadRight[getVersionNumbers /@ {#, paclet}],
-				SameQ @@ getPacletInfo[{"Name", "Qualifier", "SystemID"}] /@ {#, paclet}
+				SameQ @@ PacletMirrorManager`Private`getPacletValue[{"Name", "Qualifier", "SystemID"}] /@ {#, paclet}
 			] &,
 			Nothing
 		] //If[# === Nothing,
@@ -144,11 +152,12 @@ NewestPaclet[opts:OptionsPattern[]] := NewestPaclet[ThisSiteInfo[], opts]
 (*Pick needed paclets*)
 
 
+(* ::Code::Initialization:: *)
 PickNewestPaclet[paclets:{(_Paclet -> _Paclet)..}] := With[
 	{
-		thisSite = getPacletInfo[{"Name", "Version", "Qualifier", "SystemID"}] /@ ThisSiteInfo[]
+		thisSite = PacletMirrorManager`Private`getPacletValue[{"Name", "Version", "Qualifier", "SystemID"}] /@ ThisSiteInfo[]
 	},
-	If[MemberQ[getPacletInfo[{"Name", "Version", "Qualifier", "SystemID"}]@Values@#]@thisSite, Nothing, #]&/@DeleteDuplicatesBy[Values]@paclets
+	If[MemberQ[PacletMirrorManager`Private`getPacletValue[{"Name", "Version", "Qualifier", "SystemID"}]@Values@#]@thisSite, Nothing, #]&/@DeleteDuplicatesBy[Values]@paclets
 ]
 
 
@@ -156,6 +165,7 @@ PickNewestPaclet[paclets:{(_Paclet -> _Paclet)..}] := With[
 (*Update Specified Paclets*)
 
 
+(* ::Code::Initialization:: *)
 ValidPacletQ[expr_] := Head@expr === Paclet; (* Need to be better *)
 
 ValidPacletFileQ[file_] := ValidPacletQ@GetPacletInfo@file;
@@ -163,6 +173,7 @@ ValidPacletFileQ[file_] := ValidPacletQ@GetPacletInfo@file;
 makePacletPath = FileNameJoin@{"Paclets", #} &;
 
 
+(* ::Code::Initialization:: *)
 UpdatePaclet::invalidfile = "File `` is not a valid paclet.";
 UpdatePaclet[old_Paclet -> new_Paclet] := Catch@With[
 	{
@@ -188,10 +199,13 @@ UpdatePaclet[old_Paclet -> new_Paclet] := Catch@With[
 ]
 
 
+(* ::Code::Initialization:: *)
 UpdatePaclet[paclets:_[(_Paclet -> _Paclet)..]] := UpdatePaclet /@ paclets
 
 
+(* ::Code::Initialization:: *)
 UpdatePaclet[paclets:_[__Paclet], opts:OptionsPattern[]] := UpdatePaclet@PickNewestPaclet@NewestPaclet[paclets, opts]
 
 
+(* ::Code::Initialization:: *)
 UpdatePaclet[opts:OptionsPattern[]] := UpdatePaclet[ThisSiteInfo[], opts]
