@@ -14,30 +14,27 @@
 
 groupByDepth = GroupBy[Length@Keys@# - 1 &]@*Normal;
 
-groupByPlatform = GroupBy[
-	#,
-	PacletMirrorManager`Private`getPacletValue[{"SystemID", "Qualifier"}]
-]&;
-
-crossPlatformQ = PacletMirrorManager`Private`getPacletValue[{"SystemID", "Qualifier"}]@# === {All, ""} &;
+crossPlatformQ = GetPacletValue[{"SystemID", "Qualifier"}]@# === {All, ""} &;
 
 splitSeriesName = KeyMap[StringSplit[#, "_"]&];
 
+buildTreeByNameAndPlatform = MapIndexed[
+	If[#2[[1,1]],
+		GroupByValue["Name"]@#,
+		Normal@*GroupByValue[{"SystemID", "Qualifier"}] /@ GroupByValue["Name"]@#
+	]&,
+	GroupBy[crossPlatformQ]@*List@@SiteRegularize@#
+] &;
 
-PacletSeriesRegularize[siteInfo:_[__Paclet]] := Catenate[
+
+BuildTreeBySeries[siteInfo:_[__Paclet]] := Catenate[
 	Nest[
-		Normal @* GroupBy[Keys[#][[;;-2]] &],
+		Normal@*GroupBy @ Most@*Keys,
 		#2,
 		#1
 	]&@@@Normal@groupByDepth@splitSeriesName@#
-]& /@ MapIndexed[
-	If[#2[[1,1]],
-		GroupByName@#,
-		Normal@*groupByPlatform /@ GroupByName@#
-	]&,
-	GroupBy[List@@PacletRegularize@SiteRegularize@siteInfo, crossPlatformQ]
-]
-PacletSeriesRegularize[] := PacletSeriesRegularize@OriginalSiteInfo[];
+]& /@ buildTreeByNameAndPlatform@siteInfo
+BuildTreeBySeries[] := BuildTreeBySeries@GetSiteInfo@1;
 
 
 (* ::Subsection:: *)
@@ -49,6 +46,10 @@ $VersionStringComplete = StringRiffle[#, "."]&@{
 	ToString@$ReleaseNumber,
 	ToString@$MinorReleaseNumber
 }
+
+
+(* ::Text:: *)
+(*Accept: Paclet*)
 
 
 (*
@@ -76,7 +77,7 @@ KernelVersionMatchQ[spec_String][version_String] := Which[
 			1
 		]
 ]
-KernelVersionMatchQ[paclet_Paclet][version_String] := KernelVersionMatchQ[PacletMirrorManager`Private`getPacletValue["WolframVersion"]@PacletRegularize[paclet]]@version
+KernelVersionMatchQ[paclet_Paclet][version_String] := KernelVersionMatchQ[GetPacletValue["WolframVersion"]@PacletExpressionConvert[2]@paclet]@version
 KernelVersionMatchQ[spec_String][All] := True
 KernelVersionMatchQ[paclet_Paclet][All] := True
 
@@ -85,24 +86,18 @@ KernelVersionMatchQ[paclet_Paclet][All] := True
 (*Search*)
 
 
-PacletQuery[partSpec:{___String}:{}, OptionsPattern@{"SiteInfo" -> Hold@OriginalSiteInfo[]}] := Fold[
-	Function[{rules, key}, 
-		Catenate@Cases[rules, (key -> value_List) :> value]
-	],
+PacletQuery[partSpec:{___String}:{}, OptionsPattern@{"SiteInfo" -> Hold@GetSiteInfo@1}] := Fold[
+	Query[Key@#2]@<|#1|>&,(* Catenate Cases Rule *)
 	#,
-	Flatten@*List /@ FoldList[{##}&, partSpec]
-]& /@ PacletSeriesRegularize@ReleaseHold@OptionValue@"SiteInfo"
+	Flatten@*List /@ FoldList[List, partSpec](* Map Take Range Length*)
+]& /@ BuildTreeBySeries@ReleaseHold@OptionValue@"SiteInfo"
 PacletQuery[partSpec_String, opts:OptionsPattern[]] := PacletQuery[StringSplit[partSpec, "_"], opts]
 
 
-(*
-PacletManager`Package`kernelVersionMatches @ installedPaclet @ "WolframVersion"
-PacletManager`Package`systemIDMatches @ installedPaclet @ "SystemID"
-PacletManager`Package`productIDMatches @ installedPaclet @ "ProductID"
-*)
+(* ::Text:: *)
+(*Platform Compatibility Test Not Implemented !*)
 
 
-(* \:53ef\:4ee5\:518d\:8003\:8651\:5e73\:53f0\:517c\:5bb9\:6027\:68c0\:9a8c *)
 getNewestCompatible[version_][_[paclets__Paclet]] := SelectFirst[{paclets}, KernelVersionMatchQ[#][version] &, Nothing]
 
 
