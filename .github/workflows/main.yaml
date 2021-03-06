@@ -1,0 +1,152 @@
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches:
+      - master
+
+env:
+  WOLFRAM_ID: ${{ secrets.WOLFRAM_ID }}
+  WOLFRAM_PW: ${{ secrets.WOLFRAM_PW }}
+  GITEE_KEY: ${{ secrets.GITEE_KEY }}
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    name: "test "
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    - name: Install Wolfram Engine
+      run: |
+        wget https://account.wolfram.com/download/public/wolfram-engine/desktop/LINUX
+        sudo bash LINUX -- -auto -verbose
+        rm LINUX
+    - name: Activate Wolfram Engine
+      run: |
+        /usr/bin/wolframscript -authenticate $WOLFRAM_ID $WOLFRAM_PW
+        /usr/bin/wolframscript -activate
+    - name: Install Paclets
+      run: |
+        /usr/bin/wolframscript -code 'PacletInstall["CURLLink"];PacletInstall["latest/PacletMirrorManager.paclet"]'
+    - name: Set SSH Key
+      run: |
+        mkdir ~/.ssh/
+        unzip -P $GITEE_KEY -d ~/.ssh/ id.zip
+        chmod 700 ~/.ssh/rnotlnglgq_auto
+        echo $'StrictHostKeyChecking no\n UserKnownHostsFile /dev/null\n Host wlgiteeauto\nHostName gitee.com\n User rnotlnglgq\n IdentityFile ~/.ssh/rnotlnglgq_auto' > ~/.ssh/config
+    - name: Git Clone
+      run: |
+        git clone git@wlgiteeauto:rnotlnglgq/WolframPacletExtended1.git
+    - name: Update Paclets
+      run: |
+        cd WolframPacletExtended1
+        /usr/bin/wolframscript -code 'NewestPaclet["SiteInfo" -> NewestSiteInfo[]] //PickNewestPaclet //Function[Print@#;#] //UpdatePaclet;Print@BuildSiteInfo[]'
+    - name: Git Push
+      run: |
+        cd WolframPacletExtended1
+        rm -rf .git
+        git init
+        git remote add origin git@wlgiteeauto:rnotlnglgq/WolframPacletExtended1.git
+        git config --local user.name rnotlnglgq_auto
+        git config --local user.email rnotlnglgq@outlook.com
+        git add -A
+        git commit -m "auto"
+        git push -f origin master
+    - name: Git Clone
+      run: |
+        git clone git@wlgiteeauto:rnotlnglgq/WolframPacletExtended2.git
+    - name: Update Paclets
+      run: |
+        cd WolframPacletExtended2
+        /usr/bin/wolframscript -code 'NewestPaclet["SiteInfo" -> NewestSiteInfo[]] //PickNewestPaclet //Function[Print@#;#] //UpdatePaclet;Print@BuildSiteInfo[]'
+    - name: Git Push
+      run: |
+        cd WolframPacletExtended2
+        rm -rf .git
+        git init
+        git remote add origin git@wlgiteeauto:rnotlnglgq/WolframPacletExtended2.git
+        git config --local user.name rnotlnglgq_auto
+        git config --local user.email rnotlnglgq@outlook.com
+        git add -A
+        git commit -m "auto"
+        git push -f origin master
+    - name: Git Clone
+      run: |
+        git clone git@wlgiteeauto:rnotlnglgq/WolframPacletExtended3.git
+    - name: Update Paclets
+      run: |
+        cd WolframPacletExtended3
+        /usr/bin/wolframscript -code 'NewestPaclet["SiteInfo" -> NewestSiteInfo[]] //PickNewestPaclet //Function[Print@#;#] //UpdatePaclet;Print@BuildSiteInfo[]'
+    - name: Git Push
+      run: |
+        cd WolframPacletExtended3
+        rm -rf .git
+        git init
+        git remote add origin git@wlgiteeauto:rnotlnglgq/WolframPacletExtended3.git
+        git config --local user.name rnotlnglgq_auto
+        git config --local user.email rnotlnglgq@outlook.com
+        git add -A
+        git commit -m "auto"
+        git push -f origin master
+    - name: Git Clone
+      run: |
+        git clone git@wlgiteeauto:rnotlnglgq/WolframPacletExtended4.git
+    - name: Update Paclets
+      run: |
+        cd WolframPacletExtended4
+        /usr/bin/wolframscript -code 'NewestPaclet["SiteInfo" -> NewestSiteInfo[]] //PickNewestPaclet //Function[Print@#;#] //UpdatePaclet;Print@BuildSiteInfo[]'
+    - name: Git Push
+      run: |
+        cd WolframPacletExtended4
+        rm -rf .git
+        git init
+        git remote add origin git@wlgiteeauto:rnotlnglgq/WolframPacletExtended4.git
+        git config --local user.name rnotlnglgq_auto
+        git config --local user.email rnotlnglgq@outlook.com
+        git add -A
+        git commit -m "auto"
+        git push -f origin master
+    - name: Git Clone
+      run: |
+        git clone git@wlgiteeauto:rnotlnglgq/WolframPacletExtended5.git
+    - name: Update Paclets
+      run: |
+        cd WolframPacletExtended5
+        /usr/bin/wolframscript -code 'NewestPaclet["SiteInfo" -> NewestSiteInfo[]] //PickNewestPaclet //Function[Print@#;#] //UpdatePaclet;Print@BuildSiteInfo[]'
+    - name: Git Push
+      run: |
+        cd WolframPacletExtended5
+        rm -rf .git
+        git init
+        git remote add origin git@wlgiteeauto:rnotlnglgq/WolframPacletExtended5.git
+        git config --local user.name rnotlnglgq_auto
+        git config --local user.email rnotlnglgq@outlook.com
+        git add -A
+        git commit -m "auto"
+        git push -f origin master
+    - name: Git Clone
+      run: |
+        git clone git@wlgiteeauto:rnotlnglgq/WolframPacletExtended6.git
+    - name: Update Paclets
+      run: |
+        cd WolframPacletExtended6
+        /usr/bin/wolframscript -code 'NewestPaclet["SiteInfo" -> NewestSiteInfo[]] //PickNewestPaclet //Function[Print@#;#] //UpdatePaclet;Print@BuildSiteInfo[]'
+    - name: Git Push
+      run: |
+        cd WolframPacletExtended6
+        rm -rf .git
+        git init
+        git remote add origin git@wlgiteeauto:rnotlnglgq/WolframPacletExtended6.git
+        git config --local user.name rnotlnglgq_auto
+        git config --local user.email rnotlnglgq@outlook.com
+        git add -A
+        git commit -m "auto"
+        git push -f origin master
