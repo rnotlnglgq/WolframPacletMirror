@@ -12,24 +12,24 @@
 (*Type convert*)
 
 
-PacletExpressionConvert[2][paclet_Paclet] := paclet /. (key_Symbol -> value_) :> (SymbolName@key -> value)
+PacletExpressionConvert[2][paclet_`Paclet] := paclet /. (key_Symbol -> value_) :> (SymbolName@key -> value)
 
 
-PacletExpressionConvert[2][pacletObject_PacletObject] := Paclet@@Normal@First@pacletObject
+PacletExpressionConvert[2][pacletObject_`PacletObject] := `Paclet@@Normal@First@pacletObject
 
 
-PacletExpressionConvert[1][paclet_Paclet] := paclet /. (key_String -> value_) :> (Symbol@key -> value)
+PacletExpressionConvert[1][paclet_`Paclet] := paclet /. (key_String -> value_) :> (Symbol@key -> value)
 
 
-PacletExpressionConvert[1][pacletObject_PacletObject] := pacletObject //PacletExpressionConvert[2] //PacletExpressionConvert[1]
+PacletExpressionConvert[1][pacletObject_`PacletObject] := pacletObject //PacletExpressionConvert[2] //PacletExpressionConvert[1]
 
 
-PacletExpressionConvert[3][paclet_Paclet] := paclet //PacletExpressionConvert[2] //PacletExpressionConvert[3]
+PacletExpressionConvert[3][paclet_`Paclet] := paclet //PacletExpressionConvert[2] //PacletExpressionConvert[3]
 
 
 $PacletInfoKeys = {"BackwardCompatible","BuildNumber","Category","Creator","Description","Extensions","Internal","Loading","MathematicaVersion","Name","Published","Qualifier","Root","Support","SystemID","Updating","URL","Version","WolframVersion"};
 
-PacletExpressionConvert[0][paclet_Paclet] := PacletExpressionConvert[1]@*Paclet@@FilterRules[
+PacletExpressionConvert[0][paclet_`Paclet] := PacletExpressionConvert[1]@*`Paclet@@FilterRules[
 	List@@Replace[PacletExpressionConvert[2]@paclet, {
 		(key:"PlatformQualifier" -> val_) :> ("Qualifier" -> val)
 	}, 1],
@@ -45,25 +45,27 @@ PacletExpressionConvert[0][paclet_Paclet] := PacletExpressionConvert[1]@*Paclet@
 (*Accept: Type-2 Paclet.*)
 
 
-GetPacletValue[fields_][paclet_Paclet] := GetPacletValue[paclet, fields]
+GetPacletValue[fields_][paclet_`Paclet] := GetPacletValue[paclet, fields]
 
-GetPacletValue[paclet_Paclet, field_String] := Replace[field, Join[List@@paclet, $DefaultPacletValue]]
-GetPacletValue[paclet_Paclet, fields:{__String}] := GetPacletValue[paclet, #]& /@ fields
+GetPacletValue[paclet_`Paclet, field_String] := Replace[field, Join[List@@paclet, $DefaultPacletValue]]
+GetPacletValue[paclet_`Paclet, fields:{__String}] := GetPacletValue[paclet, #]& /@ fields
 
-GetPacletValue[paclet_Paclet, "QualifiedName"] := With[{n, q, v}=GetPacletValue[paclet, {"Name", "Qualifier", "Version"}] //Thread //Evaluate,
+GetPacletValue[paclet_`Paclet, "QualifiedName"] := With[{n, q, v}=GetPacletValue[paclet, {"Name", "Qualifier", "Version"}] //Thread //Evaluate,
 	If[q == "",
 		ExternalService`EncodeString[n, "UTF-8"] <> "-" <> v,
 		ExternalService`EncodeString[n, "UTF-8"] <> "-" <> q <> "-" <> v
 	]
 ]
-GetPacletValue[paclet_Paclet, "MathematicaVersion"|"WolframVersion"] := List@@paclet //Query[{"MathematicaVersion", "WolframVersion"}] //Switch[#,
+GetPacletValue[paclet_`Paclet, "MathematicaVersion"|"WolframVersion"] := List@@paclet //Query[{"MathematicaVersion", "WolframVersion"}] //Switch[#,
 	{_Missing, _Missing}, "10+",
 	{_Missing, _}, Last@#,
 	{_, _Missing}, First@#,
 	_, Null
 ]&
 
-GetPacletValue[paclet_Paclet, "VersionNumber"] := FromDigits /@ StringSplit[
+GetPacletValue[paclet_`Paclet, "FileName"] := GetPacletValue["QualifiedName"]@paclet <> ".paclet"
+
+GetPacletValue[paclet_`Paclet, "VersionNumber"] := FromDigits /@ StringSplit[
 	GetPacletValue["Version"]@paclet
 , "."];
 
@@ -119,7 +121,7 @@ GroupByValue[field_][_[paclets___Paclet]] := GroupBy[GetPacletValue@field]@{pacl
 (*ReverseSort(>)*)
 
 
-SortByVersion[_[paclets___Paclet]] := ReverseSortBy[
+SortByVersion[_[paclets___`Paclet]] := ReverseSortBy[
 	{paclets},
 	GetPacletValue["VersionNumber"],
 	OrderedQ@*PadRight@*List
@@ -130,7 +132,6 @@ SortByVersion[_[paclets___Paclet]] := ReverseSortBy[
 (*Accept: Paclet Collection.*)
 
 
-SiteRegularize[_[paclets__Paclet]] := PacletSiteManager`Private`PacletSite @@ Catenate@Values@KeySort[
+SiteRegularize[_[paclets__`Paclet]] := `PacletSite @@ Catenate@Values@KeySort[
 	SortByVersion /@ GroupByValue["Name"][PacletExpressionConvert[2] /@ {paclets}]
 ]
-SiteRegularize[] := SiteRegularize@GetPacletInfo[]

@@ -27,35 +27,27 @@ buildTreeByNameAndPlatform = MapIndexed[
 ] &;
 
 
-BuildTreeBySeries[siteInfo:_[__Paclet]] := Catenate[
+BuildTreeBySeries[siteInfo:_[__`Paclet]] := Catenate[
 	Nest[
 		Normal@*GroupBy @ Most@*Keys,
 		#2,
 		#1
-	]&@@@Normal@groupByDepth@splitSeriesName@#
+	]& @@@ Normal@groupByDepth@splitSeriesName@#
 ]& /@ buildTreeByNameAndPlatform@siteInfo
-BuildTreeBySeries[] := BuildTreeBySeries@GetSiteInfo@1;
+BuildTreeBySeries[i_Integer] := BuildTreeBySeries@GetSiteInfo@i
+BuildTreeBySeries[] := BuildTreeBySeries@3
 
 
 (* ::Subsection:: *)
 (*Version Matching*)
 
 
-$VersionStringComplete = StringRiffle[#, "."]&@{
-	If[StringMatchQ[#, "*."], # <> "0", #]&@ToString@$VersionNumber,
-	ToString@$ReleaseNumber,
-	ToString@$MinorReleaseNumber
-}
-
-
 (* ::Text:: *)
-(*Accept: Paclet*)
+(*Accept: Type-2 Paclet*)
+(*Accept: Version Specification String*)
+(*Accept: Version Number String*)
 
 
-(*
-	PacletManager`Package`kernelVersionMatches
-		PacletManager`Utils`Private`storeInCache
-*)
 KernelVersionMatchQ[spec_String][version_String] := Which[
 	StringMatchQ["*,*"]@spec,
 		AnyTrue[
@@ -77,16 +69,15 @@ KernelVersionMatchQ[spec_String][version_String] := Which[
 			1
 		]
 ]
-KernelVersionMatchQ[paclet_Paclet][version_String] := KernelVersionMatchQ[GetPacletValue["WolframVersion"]@PacletExpressionConvert[2]@paclet]@version
-KernelVersionMatchQ[spec_String][All] := True
-KernelVersionMatchQ[paclet_Paclet][All] := True
+KernelVersionMatchQ[paclet_`Paclet][version_String] := KernelVersionMatchQ[GetPacletValue["WolframVersion"]@paclet]@version
+KernelVersionMatchQ[_String|_`Paclet][All] := True
 
 
 (* ::Subsection:: *)
 (*Search*)
 
 
-PacletQuery[partSpec:{___String}:{}, OptionsPattern@{"SiteInfo" -> Hold@GetSiteInfo@1}] := Fold[
+PacletQuery[partSpec:{___String}:{}, OptionsPattern@{"SiteInfo" -> Hold@GetSiteInfo@3}] := Fold[
 	Query[Key@#2]@<|#1|>&,(* Catenate Cases Rule *)
 	#,
 	Flatten@*List /@ FoldList[List, partSpec](* Map Take Range Length*)
@@ -103,6 +94,6 @@ getNewestCompatible[version_][_[paclets__Paclet]] := SelectFirst[{paclets}, Kern
 
 PacletSearch[partSpec:{___String}|_String:{}, OptionsPattern[]] := Cases[
 	PacletQuery[partSpec, "SiteInfo" -> ReleaseHold@OptionValue@"SiteInfo"],
-	paclets:{__Paclet} :> getNewestCompatible[OptionValue@"KernelVer"]@paclets
+	paclets:{__`Paclet} :> getNewestCompatible[OptionValue@"KernelVer"]@paclets
 , Infinity]
-Options[PacletSearch] = {"SiteInfo" -> Hold@OriginalSiteInfo[], "KernelVer" -> $VersionStringComplete};
+Options[PacletSearch] = {"SiteInfo" -> Hold@GetSiteInfo@3, "KernelVer" -> $VersionStringComplete};

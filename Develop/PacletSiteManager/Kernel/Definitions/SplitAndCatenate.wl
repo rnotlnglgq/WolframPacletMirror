@@ -8,17 +8,18 @@
 (*Paclet Parts*)
 
 
+PacletPartList[] := FileNames["*.paclet.*", "Paclets"]
+
+
 (* ::Subsubsection:: *)
 (*Parts regularization*)
 
 
 (* Assertion for the First[{}] situation? *)
-groupParts[partPaths_] := GroupBy[
-	partPaths,
-	First@*StringCases[fileBaseName__~~".paclet."~~__ :> fileBaseName~~".paclet"]
-]
 
-PartsRegularize[fileNameList_] := Sort /@ groupParts@fileNameList //Normal
+PartsRegularize[fileNameList_] := Sort /@ GroupBy[
+	First@*StringCases[StartOfString~~fileBaseName__~~".paclet."~~__ :> fileBaseName~~".paclet"]
+]@fileNameList //Normal
 PartsRegularize[] := PartsRegularize@PacletPartList[]
 
 

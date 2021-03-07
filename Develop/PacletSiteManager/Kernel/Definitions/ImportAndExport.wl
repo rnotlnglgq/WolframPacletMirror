@@ -19,10 +19,24 @@ BlockedExport[args___] := WithContext["PacletSiteManager`Private`", Export@args]
 
 
 (* ::Text:: *)
-(*Cloud: Last fetch*)
+(*Local: Load from Directory[]*)
 
 
-GetSiteInfo[1] := With[
+GetSiteInfo[1] := PacletExpressionConvert[2] /@ BlockedImport["PacletSite.mz", {"ZIP", "PacletSite.m"}]
+
+
+(* ::Text:: *)
+(*Local: Fetch now*)
+
+
+GetSiteInfo[2] := `PacletSite @@ PacletExpressionConvert[2]@*GetPacletInfo /@ PacletList[]
+
+
+(* ::Text:: *)
+(*Cloud: Load from cache*)
+
+
+GetSiteInfo[3] := With[
 	{
 		info = SelectFirst[
 			PacletManager`Services`Private`$pacletSiteData,
@@ -30,17 +44,17 @@ GetSiteInfo[1] := With[
 		]
 	},
 	If[MissingQ@info,
-		PacletSite[],
-		PacletSite @@ PacletExpressionConvert[2] /@ Last@info
+		`PacletSite[],
+		`PacletSite @@ PacletExpressionConvert[2] /@ (Last@info /. {System`Paclet -> `Paclet, System`PacletObject -> `PacletObject})
 	]
 ]
 
 
 (* ::Text:: *)
-(*Local: Directory[]*)
+(*Cloud: Fetch now*)
 
 
-GetSiteInfo[2] := PacletExpressionConvert[2] /@ BlockedImport["PacletSite.mz", {"ZIP", "PacletSite.m"}]
+GetSiteInfo[4] := PacletExpressionConvert[2] /@ BlockedImport["http://pacletserver.wolfram.com/PacletSite.mz", {"ZIP", "PacletSite.m"}]
 
 
 (* ::Subsection:: *)
@@ -52,9 +66,6 @@ GetSiteInfo[2] := PacletExpressionConvert[2] /@ BlockedImport["PacletSite.mz", {
 
 
 PacletList[] := FileNames["*.paclet", "Paclets"]
-
-
-PacletPartList[] := FileNames["*.paclet.*", "Paclets"]
 
 
 (* ::Subsubsection:: *)
@@ -75,6 +86,7 @@ GetPacletInfo[] := GetPacletInfo@PacletList[]
 
 
 PutSiteInfo[siteInfo_] := BlockedExport["PacletSite.mz",
-	"PacletSite.m" -> PacletSiteManager`Private`PacletSite @@ PacletExpressionConvert[0] /@ siteInfo
+	"PacletSite.m" -> `PacletSite @@ PacletExpressionConvert[0] /@ siteInfo
 , "ZIP"]
-PutSiteInfo[] := PutSiteInfo@SiteRegularize[]
+PutSiteInfo[i_Integer] := PutSiteInfo@SiteRegularize@GetSiteInfo@i
+PutSiteInfo[] := PutSiteInfo@2
