@@ -78,7 +78,7 @@ KernelVersionMatchQ[_String|_`Paclet][All] := True
 
 
 PacletQuery[partSpec:{___String}:{}, OptionsPattern@{"SiteInfo" -> Hold@GetSiteInfo@3}] := Fold[
-	Query[Key@#2]@<|#1|>&,(* Catenate Cases Rule *)
+	Replace[_Missing :> {}]@Query[Key@#2]@<|#1|>&,(* Catenate Cases Rule *)
 	#,
 	Flatten@*List /@ FoldList[List, partSpec](* Map Take Range Length*)
 ]& /@ BuildTreeBySeries@ReleaseHold@OptionValue@"SiteInfo"
@@ -89,7 +89,7 @@ PacletQuery[partSpec_String, opts:OptionsPattern[]] := PacletQuery[StringSplit[p
 (*Platform Compatibility Test Not Implemented !*)
 
 
-getNewestCompatible[version_][_[paclets__Paclet]] := SelectFirst[{paclets}, KernelVersionMatchQ[#][version] &, Nothing]
+getNewestCompatible[version_][_[paclets__`Paclet]] := SelectFirst[{paclets}, KernelVersionMatchQ[#][version] &, Nothing]
 
 
 PacletSearch[partSpec:{___String}|_String:{}, OptionsPattern[]] := Cases[

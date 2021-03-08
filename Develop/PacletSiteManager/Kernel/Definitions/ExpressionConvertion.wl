@@ -48,14 +48,14 @@ PacletExpressionConvert[0][paclet_`Paclet] := PacletExpressionConvert[1]@*`Pacle
 GetPacletValue[fields_][paclet_`Paclet] := GetPacletValue[paclet, fields]
 
 GetPacletValue[paclet_`Paclet, field_String] := Replace[field, Join[List@@paclet, $defaultPacletValue]]
+
 GetPacletValue[paclet_`Paclet, fields:{__String}] := GetPacletValue[paclet, #]& /@ fields
 
-GetPacletValue[paclet_`Paclet, "QualifiedName"] := With[{n, q, v}=GetPacletValue[paclet, {"Name", "Qualifier", "Version"}] //Thread //Evaluate,
-	If[q == "",
-		ExternalService`EncodeString[n, "UTF-8"] <> "-" <> v,
-		ExternalService`EncodeString[n, "UTF-8"] <> "-" <> q <> "-" <> v
-	]
-]
+GetPacletValue[paclet_`Paclet, "QualifiedName"] := If[#2 == "",
+	ExternalService`EncodeString[#1, "UTF-8"] <> "-" <> #3,
+	ExternalService`EncodeString[#1, "UTF-8"] <> "-" <> #2 <> "-" <> #3
+]& @@ GetPacletValue[paclet, {"Name", "Qualifier", "Version"}]
+
 GetPacletValue[paclet_`Paclet, "MathematicaVersion"|"WolframVersion"] := List@@paclet //Query[{"MathematicaVersion", "WolframVersion"}] //Switch[#,
 	{_Missing, _Missing}, "10+",
 	{_Missing, _}, Last@#,
@@ -109,7 +109,7 @@ $defaultPacletValue = {
 (*Accept: Type-2 Paclet Collection.*)
 
 
-GroupByValue[field_][_[paclets___Paclet]] := GroupBy[GetPacletValue@field]@{paclets}
+GroupByValue[field_][_[paclets___`Paclet]] := GroupBy[GetPacletValue@field]@{paclets}
 
 
 (* ::Subsubsection:: *)
