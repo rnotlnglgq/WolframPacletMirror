@@ -36,10 +36,17 @@ CatenateParts[] := CatenateParts@PartsRegularize[]
 (*Split*)
 
 
-getPartsNumber[file_] := FileByteCount@file/1024000 //Floor
+(* ::Text:: *)
+(*Size unit: Byte*)
+
+
+$PartSize = 1024000;
+
+
+getPartsNumber[file_] := FileByteCount@file/$PartSize //Floor
 
 SplitPaclet[pacletFilePath_] := If[# > 0,
-	Replace[0 -> FileBaseName@pacletFilePath]@Run@StringRiffle@{"split", "-b", "1000K", pacletFilePath, "-d", "-a", ToString@IntegerLength@#, pacletFilePath<>"."},
+	Replace[0 -> FileBaseName@pacletFilePath]@Run@StringRiffle@{"split", "-b", IntegerString@$PartSize, pacletFilePath, "-d", "-a", ToString@IntegerLength@#, pacletFilePath<>"."},
 	FileBaseName@pacletFilePath
 ]&@getPartsNumber@pacletFilePath
 SetAttributes[SplitPaclet, Listable]

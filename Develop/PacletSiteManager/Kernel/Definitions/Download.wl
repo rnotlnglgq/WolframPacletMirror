@@ -76,3 +76,12 @@ DownloadPaclet[paclets:_[__`Paclet]] := Switch[$Downloader,
 DownloadPaclet[single_`Paclet] := DownloadPaclet@{single}
 DownloadPaclet[partSpec:{___String}|_String, opts:OptionsPattern[]] := DownloadPaclet@PacletSearch[partSpec, opts]
 DownloadPaclet[] := DownloadPaclet@{}
+
+
+(* ::Subsection:: *)
+(*Check Validity*)
+
+
+ValidPacletQ[expr_] := Head@expr === `Paclet; (* Need to be better *)
+
+ValidPacletFileQ[file_] := ValidPacletQ@GetPacletInfo@file;

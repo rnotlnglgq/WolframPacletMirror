@@ -27,13 +27,13 @@ PacletExpressionConvert[1][pacletObject_`PacletObject] := pacletObject //PacletE
 PacletExpressionConvert[3][paclet_`Paclet] := paclet //PacletExpressionConvert[2] //PacletExpressionConvert[3]
 
 
-$PacletInfoKeys = {"BackwardCompatible","BuildNumber","Category","Creator","Description","Extensions","Internal","Loading","MathematicaVersion","Name","Published","Qualifier","Root","Support","SystemID","Updating","URL","Version","WolframVersion"};
+$pacletInfoKeys = {"BackwardCompatible","BuildNumber","Category","Creator","Description","Extensions","Internal","Loading","MathematicaVersion","Name","Published","Qualifier","Root","Support","SystemID","Updating","URL","Version","WolframVersion"};
 
 PacletExpressionConvert[0][paclet_`Paclet] := PacletExpressionConvert[1]@*`Paclet@@FilterRules[
 	List@@Replace[PacletExpressionConvert[2]@paclet, {
 		(key:"PlatformQualifier" -> val_) :> ("Qualifier" -> val)
 	}, 1],
-	Alternatives@@$PacletInfoKeys
+	Alternatives@@$pacletInfoKeys
 ]
 
 
@@ -47,7 +47,7 @@ PacletExpressionConvert[0][paclet_`Paclet] := PacletExpressionConvert[1]@*`Pacle
 
 GetPacletValue[fields_][paclet_`Paclet] := GetPacletValue[paclet, fields]
 
-GetPacletValue[paclet_`Paclet, field_String] := Replace[field, Join[List@@paclet, $DefaultPacletValue]]
+GetPacletValue[paclet_`Paclet, field_String] := Replace[field, Join[List@@paclet, $defaultPacletValue]]
 GetPacletValue[paclet_`Paclet, fields:{__String}] := GetPacletValue[paclet, #]& /@ fields
 
 GetPacletValue[paclet_`Paclet, "QualifiedName"] := With[{n, q, v}=GetPacletValue[paclet, {"Name", "Qualifier", "Version"}] //Thread //Evaluate,
@@ -70,7 +70,7 @@ GetPacletValue[paclet_`Paclet, "VersionNumber"] := FromDigits /@ StringSplit[
 , "."];
 
 
-$DefaultPacletValue = {
+$defaultPacletValue = {
     "Extensions" -> {},
     "SystemID" -> All,
     "WolframVersion" -> "10+",
