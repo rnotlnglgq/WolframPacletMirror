@@ -45,7 +45,10 @@ GetSiteInfo[3] := With[
 	},
 	If[MissingQ@info,
 		`PacletSite[],
-		`PacletSite @@ PacletExpressionConvert[2] /@ (Last@info /. {System`Paclet -> `Paclet, System`PacletObject -> `PacletObject})
+		(* You must not create symbol System`Paclet. That will redirect PacletManager`Private`Paclet to the one you've created, which make that related functions fail. *)
+		`PacletSite @@ PacletExpressionConvert[2] /@ Replace[Last@info,
+			{h_@s___ /; {Context@h,SymbolName@h}==={"System`","Paclet"} :> `Paclet@s, h_@s___ /; {Context@h,SymbolName@h}==={"System`","PacletObject"} :> `PacletObject@s}
+		, 1]
 	]
 ]
 

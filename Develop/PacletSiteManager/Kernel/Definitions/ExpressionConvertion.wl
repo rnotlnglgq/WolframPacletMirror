@@ -29,12 +29,74 @@ PacletExpressionConvert[3][paclet_`Paclet] := paclet //PacletExpressionConvert[2
 
 $pacletInfoKeys = {"BackwardCompatible","BuildNumber","Category","Creator","Description","Extensions","Internal","Loading","MathematicaVersion","Name","Published","Qualifier","Root","Support","SystemID","Updating","URL","Version","WolframVersion"};
 
+
 PacletExpressionConvert[0][paclet_`Paclet] := PacletExpressionConvert[1]@*`Paclet@@FilterRules[
 	List@@Replace[PacletExpressionConvert[2]@paclet, {
 		(key:"PlatformQualifier" -> val_) :> ("Qualifier" -> val)
 	}, 1],
 	Alternatives@@$pacletInfoKeys
 ]
+
+
+(* Not used yet. Need to seperate for using. *)
+$pacletInfoSymbolConversions = Dispatch[{
+	`Name -> "Name",
+	`Version -> "Version",
+	`Extensions -> "Extensions",
+	`Resources -> "Resources",
+	`SystemID -> "SystemID",
+	`MathematicaVersion -> "MathematicaVersion",
+	`WolframVersion -> "WolframVersion",
+	`Qualifier -> "Qualifier",
+	`Internal -> "Internal",
+	`Root -> "Root",
+	`BackwardCompatible -> "BackwardCompatible",
+	`BuildNumber -> "BuildNumber",
+	`Description -> "Description", 
+	`UUID -> "UUID",
+	`Creator -> "Creator",
+	`URL -> "URL",
+	`Publisher -> "Publisher",
+	`Support -> "Support",
+	`Category -> "Category",
+	`Keywords -> "Keywords",
+	`Icon -> "Icon",
+	`Thumbnail -> "Thumbnail",
+	`Copyright -> "Copyright",
+	`License -> "License",
+	`Loading -> "Loading",
+	`Language -> "Language",
+	`Context -> "Context",
+	`LinkBase -> "LinkBase",
+	`MainPage -> "MainPage",
+	`Prepend -> "Prepend",
+	`Symbols -> "Symbols",
+	`FunctionInformation -> "FunctionInformation",
+	`HiddenImport -> "HiddenImport",
+	`Alias -> "Alias",
+	`ProductID -> "ProductID",
+	`Updating -> "Updating",
+	`AutoUpdating -> "AutoUpdating",
+	`PlatformQualifier -> "Qualifier",
+	`Contexts -> "Context",
+	`Paclet -> `Paclet,
+	`PacletObject -> `PacletObject,
+	`PacletGroup -> `PacletGroup,
+	`PacletSite -> `PacletSite,
+	`Association -> System`Association,
+	List -> System`List,
+	Rule -> System`Rule,
+	True -> System`True,
+	False -> System`False,
+	Except -> System`Except,
+	Alternatives -> System`Alternatives,
+	All -> System`All,
+	None -> System`None,
+	Null -> System`Null,
+	Automatic -> System`Automatic,
+	v:_Real|_Integer :> ToString[v],
+	s_Symbol :> SymbolName@s
+}] 
 
 
 (* ::Subsubsection:: *)
