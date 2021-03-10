@@ -7,7 +7,7 @@
 BeginPackage["PacletSiteManager`"]
 
 
-PacletSiteManager`Private`$Test = True;
+PacletSiteManager`Private`$Test = False;
 
 
 SetDirectory@If[PacletSiteManager`Private`$Test && $Notebooks,

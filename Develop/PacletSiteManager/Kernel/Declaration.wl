@@ -31,10 +31,10 @@ $RequirementFile
 `Private`PacletSite
 
 
-`Private`Paclet /: MakeBoxes[paclet:_`Private`Paclet, form_] := MakeBoxes[#, form] &@StringTemplate["[Paclet: ``]"]@ToString@GetPacletValue["QualifiedName"]@paclet
+`Private`Paclet /: Format[paclet:_`Private`Paclet] := StringTemplate["<[Paclet: ``]>"]@ToString@GetPacletValue["QualifiedName"]@paclet
 
 
-`Private`PacletObject /: MakeBoxes[paclet:_`Private`PacletObject, form_] := MakeBoxes[#, form] &@StringTemplate["[PacletObject: ``]"]@GetPacletValue["QualifiedName"]@paclet
+`Private`PacletObject /: Format[paclet:_`Private`PacletObject] := StringTemplate["<[PacletObject: ``]>"]@GetPacletValue["QualifiedName"]@paclet
 
 
 (* ::Subsection:: *)
@@ -71,8 +71,3 @@ SortByVersion
 SplitPaclet
 ValidPacletFileQ
 ValidPacletQ
-
-
-(*
-WithContext
-*)

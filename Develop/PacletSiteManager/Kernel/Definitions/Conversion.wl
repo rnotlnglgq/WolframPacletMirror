@@ -12,12 +12,13 @@
 (*Type convert*)
 
 
-PacletExpressionConvert[2][paclet_`Paclet] := paclet /. (key_Symbol -> value_) :> (SymbolName@key -> value)
+PacletExpressionConvert[2][paclet_`Paclet] := paclet /. $pacletInfoSymbolConversions
 
 
 PacletExpressionConvert[2][pacletObject_`PacletObject] := `Paclet@@Normal@First@pacletObject
 
 
+(* Cannot invert all rules applied above in 1 -> 2. As 2 -> 1 is rarely used, that won't be implemented. *)
 PacletExpressionConvert[1][paclet_`Paclet] := paclet /. (key_String -> value_) :> (Symbol@key -> value)
 
 
@@ -27,19 +28,7 @@ PacletExpressionConvert[1][pacletObject_`PacletObject] := pacletObject //PacletE
 PacletExpressionConvert[3][paclet_`Paclet] := paclet //PacletExpressionConvert[2] //PacletExpressionConvert[3]
 
 
-$pacletInfoKeys = {"BackwardCompatible","BuildNumber","Category","Creator","Description","Extensions","Internal","Loading","MathematicaVersion","Name","Published","Qualifier","Root","Support","SystemID","Updating","URL","Version","WolframVersion"};
-
-
-PacletExpressionConvert[0][paclet_`Paclet] := PacletExpressionConvert[1]@*`Paclet@@FilterRules[
-	List@@Replace[PacletExpressionConvert[2]@paclet, {
-		(key:"PlatformQualifier" -> val_) :> ("Qualifier" -> val)
-	}, 1],
-	Alternatives@@$pacletInfoKeys
-]
-
-
-(* Not used yet. Need to seperate for using. *)
-$pacletInfoSymbolConversions = Dispatch[{
+$revervedSymbol = {
 	`Name -> "Name",
 	`Version -> "Version",
 	`Extensions -> "Extensions",
@@ -78,12 +67,31 @@ $pacletInfoSymbolConversions = Dispatch[{
 	`Updating -> "Updating",
 	`AutoUpdating -> "AutoUpdating",
 	`PlatformQualifier -> "Qualifier",
-	`Contexts -> "Context",
-	`Paclet -> `Paclet,
-	`PacletObject -> `PacletObject,
-	`PacletGroup -> `PacletGroup,
-	`PacletSite -> `PacletSite,
+	`Contexts -> "Context"
+};
+
+
+$systemSymbol = {
+	Version -> "Version",
+	Root -> "Root",
+	URL -> "URL",
+	Thumbnail -> "Thumbnail",
+	Context -> "Context",
+	Language -> "Language",
+	Pretend -> "Pretend",
+	Contexts -> "Contexts",
 	`Association -> System`Association,
+	`List -> System`List,
+	`Rule -> System`Rule,
+	`True -> System`True,
+	`False -> System`False,
+	`Except -> System`Except,
+	`Alternatives -> System`Alternatives,
+	`All -> System`All,
+	`None -> System`None,
+	`Null -> System`Null,
+	`Automatic -> System`Automatic,
+	Association -> System`Association,
 	List -> System`List,
 	Rule -> System`Rule,
 	True -> System`True,
@@ -93,7 +101,22 @@ $pacletInfoSymbolConversions = Dispatch[{
 	All -> System`All,
 	None -> System`None,
 	Null -> System`Null,
-	Automatic -> System`Automatic,
+	Automatic -> System`Automatic
+};
+
+
+$privateSymbol = {
+	`Paclet -> `Paclet,
+	`PacletObject -> `PacletObject, 
+	`PacletGroup -> `PacletGroup, 
+	`PacletSite -> `PacletSite
+};
+
+
+$pacletInfoSymbolConversions = Dispatch[{
+	Sequence@@$revervedSymbol,
+	Sequence@@$systemSymbol,
+	Sequence@@$privateSymbol,
 	v:_Real|_Integer :> ToString[v],
 	s_Symbol :> SymbolName@s
 }] 
@@ -194,6 +217,6 @@ SortByVersion[_[paclets___`Paclet]] := ReverseSortBy[
 (*Accept: Paclet Collection.*)
 
 
-SiteRegularize[_[paclets__`Paclet]] := `PacletSite @@ Catenate@Values@KeySort[
+SiteRegularize[_[paclets___`Paclet]] := `PacletSite @@ Catenate@Values@KeySort[
 	SortByVersion /@ GroupByValue["Name"][PacletExpressionConvert[2] /@ {paclets}]
 ]

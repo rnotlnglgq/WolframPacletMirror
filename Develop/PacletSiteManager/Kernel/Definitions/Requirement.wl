@@ -22,7 +22,7 @@ $RequirementFile = "Requirement.wl";
 
 
 (* Not Implemented: Judge compatibility of 2 version specifications. . *)
-GetRequirementInfo[_[paclets__`Paclet]] := ReplacePart[
+GetRequirementInfo[_[paclets___`Paclet]] := ReplacePart[
 	SelectFirst[$kernelVersionList, KernelVersionMatchQ[#], Nothing] & /@
 		ReverseSortBy[
 			#,
@@ -51,7 +51,7 @@ PutRequirementInfo[i_Integer] := PutRequirementInfo@GetRequirementInfo@i
 
 
 selectNeeded[{paclets_, versions_}] := Function[kernelVer,
-	SelectFirst[paclets, KernelVersionMatchQ[#][kernelVer] &, Nothing]
+	kernelVer -> SelectFirst[paclets, KernelVersionMatchQ[#][kernelVer] &, Nothing]
 ] /@ versions
 
 
@@ -69,24 +69,24 @@ ListRequiredPaclet[] := ListRequiredPaclet@GetRequirementInfo[]
 (*List changes*)
 
 
-compareDifference[{versions_, paclets_}] := With[
-	{
-		needed = Function[kernelVer,
-			SelectFirst[paclets, KernelVersionMatchQ[#][kernelVer] &, Nothing]
-		] /@ versions //DeleteDuplicates
-	},
-	(* Not implemented: a high-efficiency two-way complement algorithm. *)
-	<|"Add" -> Complement[needed, paclets], "Remove" -> Complement[paclets, needed]|>
-]
+pacletSameQ = SameQ @@ GetPacletValue[{"Name", "Version", "Qualifier"}] /@ {##} &;
 
 
-ListPacletChanges[needed_Association, localSiteInfo_`PacletSite] := {
-	GroupByValue["Name"]@localSiteInfo //KeyTake[Keys@needed],
-	needed
-} //Merge[compareDifference] //Values //Catenate
+(* Not implemented: a high-efficiency two-way complement algorithm. *)
+compareDifference[{requiredPaclets_, localPaclets_}] := <|
+	"Add" -> Complement[requiredPaclets, localPaclets, SameTest -> pacletSameQ],
+	"Remove" -> Complement[localPaclets, requiredPaclets, SameTest -> pacletSameQ]
+|>
 
+
+ListPacletChanges[requiredPaclet_Association, localSiteInfo_`PacletSite] := {
+	Values /@ requiredPaclet //DeleteDuplicates,
+	GroupByValue["Name"]@localSiteInfo
+} //KeyUnion[#, {}&]& //Merge[compareDifference] //Values //Merge[Catenate]
 
 ListPacletChanges[needed_Association] := ListPacletChanges[needed, GetSiteInfo@2]
+
+ListPacletChanges[] := ListPacletChanges@ListRequiredPaclet[]
 
 
 (* ::Subsection:: *)

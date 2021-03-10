@@ -12,7 +12,7 @@
 (*Grouping*)
 
 
-groupByDepth = GroupBy[Length@Keys@# - 1 &]@*Normal;
+groupByDepth = KeySort@*GroupBy[Length@Keys@# - 1 &]@*Normal;
 
 crossPlatformQ = GetPacletValue[{"SystemID", "Qualifier"}]@# === {All, ""} &;
 
@@ -26,14 +26,18 @@ buildTreeByNameAndPlatform = MapIndexed[
 	GroupBy[crossPlatformQ]@*List@@SiteRegularize@#
 ] &;
 
+(* `GroupBy[Most@*Keys]` the deepest series once, and then `Merge[Catenate]` it into the shallower one (`newDepth = oldDepth - 1`). *)
+groupBySeriesGradually = Nest[
+	Merge[Catenate] @* MapAt[
+		#[[1]]-1 -> Normal@GroupBy[Most@*Keys]@#[[2]] &
+	, -1] @* Normal,
+	#,
+	Last@Keys@#
+] &;
 
-BuildTreeBySeries[siteInfo:_[__`Paclet]] := Catenate[
-	Nest[
-		Normal@*GroupBy @ Most@*Keys,
-		#2,
-		#1
-	]& @@@ Normal@groupByDepth@splitSeriesName@#
-]& /@ buildTreeByNameAndPlatform@siteInfo
+
+BuildTreeBySeries[siteInfo:_[__`Paclet]] := 
+	Catenate@Values@groupBySeriesGradually@groupByDepth@splitSeriesName@# & /@ buildTreeByNameAndPlatform@siteInfo
 BuildTreeBySeries[i_Integer] := BuildTreeBySeries@GetSiteInfo@i
 BuildTreeBySeries[] := BuildTreeBySeries@3
 

@@ -4,8 +4,6 @@
 (*Download*)
 
 
-$WolframPacletSite = "http://pacletserver2.wolfram.com";
-
 fileNameToURL[fileName_String] := URLBuild@{
 	$WolframPacletSite,
 	"Paclets",
@@ -38,6 +36,22 @@ DownloadRequest[fileName_String] := HTTPRequest[
 		"UserAgent" -> $userAgent
 	|>
 ];
+DownloadRequest[`PacletSite] := HTTPRequest[
+	URLBuild@{
+		$WolframPacletSite,
+		"PacletSite.mz"
+	},
+	<|
+		"Headers" -> {
+			"Mathematica-systemID" -> $SystemID,
+			"Mathematica-license" -> $LicenseID,
+			"Mathematica-mathID" -> $MachineID,
+			"Mathematica-language" -> $Language,
+			"Mathematica-activationKey" -> $ActivationKey
+		},
+		"UserAgent" -> $userAgent
+	|>
+];
 DownloadRequest[] := DownloadRequest[""]
 
 
@@ -46,7 +60,7 @@ DownloadRequest[] := DownloadRequest[""]
 
 
 ExportURLList[pacletNames:{__String}, urlFileName_:"url.txt"] := Export[urlFileName, StringRiffle[fileNameToURL@pacletNames, "\n"], "Text"]
-ExportURLList[paclets:_[__`Paclet], urlFileName_:"url.txt"] := ExportURLList[GetPacletValue["FileName"]@paclets, urlFileName]
+ExportURLList[paclets:_[__`Paclet], urlFileName_:"url.txt"] := ExportURLList[GetPacletValue["FileName"]/@paclets, urlFileName]
 (* TODO(?): The url.txt can be in a temporary dir. *)
 
 

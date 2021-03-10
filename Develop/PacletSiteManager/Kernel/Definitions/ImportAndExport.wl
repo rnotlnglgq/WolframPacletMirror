@@ -5,16 +5,6 @@
 
 
 (* ::Subsection:: *)
-(*Blocked Import*)
-
-
-BlockedImport[args___] := WithContext["PacletSiteManager`Private`", Import@args]
-
-
-BlockedExport[args___] := WithContext["PacletSiteManager`Private`", Export@args]
-
-
-(* ::Subsection:: *)
 (*Site Information*)
 
 
@@ -22,7 +12,7 @@ BlockedExport[args___] := WithContext["PacletSiteManager`Private`", Export@args]
 (*Local: Load from Directory[]*)
 
 
-GetSiteInfo[1] := PacletExpressionConvert[2] /@ BlockedImport["PacletSite.mz", {"ZIP", "PacletSite.m"}]
+GetSiteInfo[1] := `PacletSite @@ PacletExpressionConvert[2]@*`Paclet @@@ withContext@Import["PacletSite.mz", {"ZIP", "PacletSite.m"}]
 
 
 (* ::Text:: *)
@@ -36,6 +26,16 @@ GetSiteInfo[2] := `PacletSite @@ PacletExpressionConvert[2]@*GetPacletInfo /@ Pa
 (*Cloud: Load from cache*)
 
 
+replaceSystemSymbol[h_@s___] := Switch[{Context@h, SymbolName@h},
+	{"System`", "Paclet"},
+		`Paclet@s,
+	{"System`", "PacletObject"},
+		`PacletObject@s,
+	_,
+		h@s
+]
+
+
 GetSiteInfo[3] := With[
 	{
 		info = SelectFirst[
@@ -45,10 +45,7 @@ GetSiteInfo[3] := With[
 	},
 	If[MissingQ@info,
 		`PacletSite[],
-		(* You must not create symbol System`Paclet. That will redirect PacletManager`Private`Paclet to the one you've created, which make that related functions fail. *)
-		`PacletSite @@ PacletExpressionConvert[2] /@ Replace[Last@info,
-			{h_@s___ /; {Context@h,SymbolName@h}==={"System`","Paclet"} :> `Paclet@s, h_@s___ /; {Context@h,SymbolName@h}==={"System`","PacletObject"} :> `PacletObject@s}
-		, 1]
+		`PacletSite @@ PacletExpressionConvert[2]@*replaceSystemSymbol /@ Last@info
 	]
 ]
 
@@ -57,7 +54,9 @@ GetSiteInfo[3] := With[
 (*Cloud: Fetch now*)
 
 
-GetSiteInfo[4] := PacletExpressionConvert[2] /@ BlockedImport["http://pacletserver.wolfram.com/PacletSite.mz", {"ZIP", "PacletSite.m"}]
+GetSiteInfo[4] := `PacletSite @@ PacletExpressionConvert[2]@*`Paclet @@@ withContext@ImportByteArray[
+	ByteArray@URLRead[DownloadRequest@`PacletSite]["BodyBytes"]
+, {"ZIP", "PacletSite.m"}]
 
 
 (* ::Subsection:: *)
@@ -75,7 +74,7 @@ PacletList[] := FileNames["*.paclet", "Paclets"]
 (*Import PacletInfo in paclets*)
 
 
-GetPacletInfo[filePath_] := First@BlockedImport[filePath, StringRiffle[{"*", "PacletInfo.*"}, "/"]]
+GetPacletInfo[filePath_] := `Paclet@@First@withContext@Import[filePath, StringRiffle[{"*", "PacletInfo.*"}, "/"]]
 SetAttributes[GetPacletInfo, Listable]
 GetPacletInfo[] := GetPacletInfo@PacletList[]
 
@@ -88,8 +87,11 @@ GetPacletInfo[] := GetPacletInfo@PacletList[]
 (*SiteInfo*)
 
 
-PutSiteInfo[siteInfo_] := BlockedExport["PacletSite.mz",
-	"PacletSite.m" -> `PacletSite @@ PacletExpressionConvert[0] /@ siteInfo
-, "ZIP"]
+PutSiteInfo[siteInfo_] := (
+	withContext@Export["PacletSite.mz",
+		"PacletSite.m" -> `PacletSite @@ PacletExpressionConvert[1] /@ siteInfo
+	, "ZIP"];
+	siteInfo
+)
 PutSiteInfo[i_Integer] := PutSiteInfo@SiteRegularize@GetSiteInfo@i
 PutSiteInfo[] := PutSiteInfo@2
