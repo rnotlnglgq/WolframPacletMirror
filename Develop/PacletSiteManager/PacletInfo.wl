@@ -4,7 +4,7 @@ Paclet[
 	Name -> "PacletSiteManager",
 	Version -> "0.0.0",
 	WolframVersion -> "12.0+,12.1+,12.2.0.0", (* Lower versions are not tested. You can download and force the installation. *)
-	Description -> "Provide tools for building PacletSite, especially on a github repository.",
+	Description -> "Provide tools for building PacletSite, especially on a remote git repository.",
 	Root -> ".",
 	Loading -> Automatic,
 	Extensions -> {
