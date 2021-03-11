@@ -18,7 +18,15 @@ SetDirectory@If[PacletSiteManager`Private`$Test && $Notebooks,
 << Declaration.wl;
 
 Begin["`Private`"]
-	Get /@ FileNames["*.wl", "Definitions"];
+	SetDirectory@"Definitions";
+	<< Utilities.wl
+	<< Conversion.wl
+	<< ImportAndExport.wl
+	<< Download.wl
+	<< Search.wl
+	<< Requirement.wl
+	<< SplitAndCatenate.wl
+	ResetDirectory[]
 End[]
 
 ResetDirectory[];

@@ -30,7 +30,7 @@ GetRequirementInfo[_[paclets___`Paclet]] := ReplacePart[
 			OrderedQ@*PadRight@*List
 		],
 	1 -> All
-] & /@ GroupByValue["Name"]@{paclets}
+] & /@ GroupByValue["Name"]@{paclets} //DeleteDuplicates
 
 GetRequirementInfo[0] := Import[$RequirementFile, "Package"]
 
@@ -41,7 +41,10 @@ GetRequirementInfo[] := GetRequirementInfo@0
 
 PutRequirementInfo[paclets_[__`Paclet]] := PutRequirementInfo@GetRequirementInfo@paclets
 
-PutRequirementInfo[requirementInfo_Association] := Export["Requirement.wl", requirementInfo, "Package"]
+PutRequirementInfo[requirementInfo_Association] := (
+	Export["Requirement.wl", requirementInfo, "Package"];
+	requirementInfo
+)
 
 PutRequirementInfo[i_Integer] := PutRequirementInfo@GetRequirementInfo@i
 
