@@ -4,18 +4,18 @@
 localSiteInfo = GetSiteInfo@2;
 cloudSiteInfo = GetSiteInfo@4;
 Print@"Requirement:";
-Print@PutRequirementInfo@GetRequirementInfo@localSiteInfo
+Print@OutputForm@PutRequirementInfo@GetRequirementInfo@localSiteInfo
 requiredPaclet = ListRequiredPaclet[
 	GetRequirementInfo@localSiteInfo,
 	cloudSiteInfo
 ];
 Print@"Required:";
-Print@requiredPaclet;
+Print@OutputForm@requiredPaclet;
 pacletChanges = ListPacletChanges[
 	requiredPaclet,
 	localSiteInfo
 ];
 Print@"Changes:";
-Print@pacletChanges;
+Print@OutputForm@pacletChanges;
 Print@"Result:";
-Print@ApplyPacletChanges@pacletChanges;
+Print@OutputForm@ApplyPacletChanges@pacletChanges;

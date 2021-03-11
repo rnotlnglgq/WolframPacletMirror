@@ -22,7 +22,7 @@ $RequirementFile = "Requirement.wl";
 
 
 (* Not Implemented: Judge compatibility of 2 version specifications. . *)
-GetRequirementInfo[_[paclets___`Paclet]] := ReplacePart[
+GetRequirementInfo[_[paclets___`Paclet]] := DeleteDuplicates@ReplacePart[
 	SelectFirst[$kernelVersionList, KernelVersionMatchQ[#], Nothing] & /@
 		ReverseSortBy[
 			#,
@@ -30,7 +30,7 @@ GetRequirementInfo[_[paclets___`Paclet]] := ReplacePart[
 			OrderedQ@*PadRight@*List
 		],
 	1 -> All
-] & /@ GroupByValue["Name"]@{paclets} //DeleteDuplicates
+] & /@ GroupByValue["Name"]@{paclets}
 
 GetRequirementInfo[0] := Import[$RequirementFile, "Package"]
 
