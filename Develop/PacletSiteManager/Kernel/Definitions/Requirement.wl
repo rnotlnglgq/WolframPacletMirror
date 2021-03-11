@@ -59,9 +59,9 @@ selectNeeded[{paclets_, versions_}] := Function[kernelVer,
 
 
 ListRequiredPaclet[requirementInfo_Association, cloudSiteInfo_`PacletSite] := {
-	SortByVersion /@ GroupByValue["Name"]@cloudSiteInfo //KeyTake[Keys@requirementInfo],
+	SortByVersion /@ GroupByValue["Name"]@cloudSiteInfo,
 	requirementInfo
-} //Merge[selectNeeded]
+} //KeyIntersection //Merge[selectNeeded]
 
 ListRequiredPaclet[requirementInfo_Association] := ListRequiredPaclet[requirementInfo, GetSiteInfo@3]
 
