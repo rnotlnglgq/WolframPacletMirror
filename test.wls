@@ -3,7 +3,7 @@
 
 Print@"\nParts:";
 Print@ToString@CatenateParts[];
-DeleteFile@PartsRegularize[];
+DeleteFile@PacletPartList[];
 localSiteInfo = GetSiteInfo@2;
 cloudSiteInfo = GetSiteInfo@4;
 Print@"\nRequirement:";
@@ -26,4 +26,4 @@ Print@"\nSiteInfo:";
 Print@ToString@PutSiteInfo[];
 Print@"\nSplitResult:";
 Print@ToString@SplitPaclet[];
-DeleteFile@PartsRegularize[];
+DeleteFile@Keys@PartsRegularize[];
