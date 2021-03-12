@@ -58,6 +58,8 @@ jobs:
         git config --local user.name rnotlnglgq_auto
         git config --local user.email rnotlnglgq@outlook.com
         git config --local gc.auto 0
+        git config --local http.postBuffer 524288000
         git add -A
         git commit -m "auto"
+        du -sh .git
         git push -f origin master
