@@ -7,9 +7,10 @@ DeleteFile@PacletPartList[];
 localSiteInfo = GetSiteInfo@2;
 cloudSiteInfo = GetSiteInfo@4;
 Print@"\nRequirement:";
-Print@ToString@PutRequirementInfo[{All, "12.0.0.0"}& /@ GetRequirementInfo@localSiteInfo]
+requirement = {All, "12.0.0.0"}& /@ GetRequirementInfo@localSiteInfo;
+Print@ToString@PutRequirementInfo@requirement;
 requiredPaclet = ListRequiredPaclet[
-	GetRequirementInfo@localSiteInfo,
+	requirement,
 	cloudSiteInfo
 ];
 Print@"\nRequired:";

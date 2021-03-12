@@ -42,7 +42,7 @@ GetRequirementInfo[] := GetRequirementInfo@0
 PutRequirementInfo[paclets_[__`Paclet]] := PutRequirementInfo@GetRequirementInfo@paclets
 
 PutRequirementInfo[requirementInfo_Association] := (
-	Export["Requirement.wl", requirementInfo, "Package"];
+	Export[$RequirementFile, requirementInfo, "Package"];
 	requirementInfo
 )
 
