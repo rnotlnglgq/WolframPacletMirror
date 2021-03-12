@@ -1,6 +1,7 @@
 #!/usr/bin/env wolframscript
 (* ::Package:: *)
 
+CatenateParts[];
 localSiteInfo = GetSiteInfo@2;
 cloudSiteInfo = GetSiteInfo@4;
 Print@"Requirement:";
