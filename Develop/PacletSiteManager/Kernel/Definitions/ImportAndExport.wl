@@ -89,7 +89,7 @@ GetPacletInfo[] := GetPacletInfo@PacletList[]
 
 PutSiteInfo[siteInfo_] := (
 	withContext@Export["PacletSite.mz",
-		"PacletSite.m" -> `PacletSite @@ PacletExpressionConvert[1] /@ siteInfo
+		"PacletSite.m" -> {ToString[`PacletSite @@ PacletExpressionConvert[1] /@ siteInfo, InputForm], "String"}
 	, "ZIP"];
 	siteInfo
 )
