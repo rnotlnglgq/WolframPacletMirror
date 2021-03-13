@@ -208,7 +208,7 @@ finishCatenate[remotePrefix_, targetPath_, sourceFileNameList_] := (
 			PacletMirrorClient`CommandLineUtilities`ProgressPanel`UpdateProgressData["Verification passed. Installing...", None, None];
 			DeleteFile@sourceFileNameList;
 			ResetDirectory[];
-			Throw[PacletManager`Manager`Private`installPacletFromFileOrURL[targetPath, True, True], "DownloadFinished"]
+			Throw[targetPath, "DownloadFinished"]
 		),
 		(
 			PacletMirrorClient`CommandLineUtilities`ProgressPanel`UpdateProgressData["Verification failed. Trying to re-download suspicious parts...", None, None];
@@ -222,7 +222,7 @@ finishCatenate[remotePrefix_, targetPath_, sourceFileNameList_] := (
 					i/$total2
 				];
 				If[FileExistsQ@#, DeleteFile@#]&@$suspiciousParts[[i]];
-				<<CURLLink`;
+				<< CURLLink`;
 				URLDownload[URLBuild@{URLBuild@MapAt[Most, URLParse@remotePrefix, "Path"], FileNameTake@$suspiciousParts[[i]]}, $suspiciousParts[[i]], "StatusCode"]
 			, {i, $total2}];
 			callCatenate[remotePrefix, targetPath, sourceFileNameList]

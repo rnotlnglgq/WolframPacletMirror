@@ -1,1 +1,0 @@
-http://pacletserver2.wolfram.com/Paclets/WikipediaData-11.3.8.paclet
