@@ -44,17 +44,17 @@ jobs:
         echo $'StrictHostKeyChecking no\n UserKnownHostsFile /dev/null\n Host wlgiteeauto\nHostName gitee.com\n User rnotlnglgq\n IdentityFile ~/.ssh/rnotlnglgq_auto' > ~/.ssh/config
     - name: Git Clone
       run: |
-        git clone https://gitee.com/wolframpaclet/WolframPacletExtended3.git
+        git clone https://gitee.com/wolframpaclet/WolframPacletExtended4.git
     - name: Update Paclets
       run: |
-        cd WolframPacletExtended3
+        cd WolframPacletExtended4
         /usr/bin/wolframscript -file '../test.wls'
     - name: Git Push
       run: |
-        cd WolframPacletExtended3
+        cd WolframPacletExtended4
         rm -rf .git
         git init
-        git remote add origin git@wlgiteeauto:rnotlnglgq/WolframPacletMirror4.git
+        git remote add origin git@wlgiteeauto:rnotlnglgq/WolframPacletMirror5.git
         git config --local user.name rnotlnglgq_auto
         git config --local user.email rnotlnglgq@outlook.com
         git config --local gc.auto 0
