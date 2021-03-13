@@ -22,7 +22,7 @@ $pacletMirrorList = "https://gitee.com/rnotlnglgq/WolframPacletMirror/raw/master
 SetMirrorSites[] := (
 	PacletSiteRemove /@ Select[
 		PacletSites[],
-		StringContainsQ["wolframpaclet", IgnoreCase -> True]@#["URL"] &
+		StringContainsQ["wolframpaclet"|"rnotlnglgq", IgnoreCase -> True]@#["URL"] &
 	];
 	PacletSiteAdd /@ Import[$pacletMirrorList, "Package"]
 )
