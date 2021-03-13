@@ -53,6 +53,10 @@ PutRequirementInfo[i_Integer] := PutRequirementInfo@GetRequirementInfo@i
 (*Select needed*)
 
 
+(* ::Text:: *)
+(*Unable to resolve non-crossplatform paclets yet.*)
+
+
 selectNeeded[{paclets_, versions_}] := Function[kernelVer,
 	kernelVer -> SelectFirst[paclets, KernelVersionMatchQ[#][kernelVer] &, Nothing]
 ] /@ versions
