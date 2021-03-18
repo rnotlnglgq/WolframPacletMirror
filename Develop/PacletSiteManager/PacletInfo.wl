@@ -15,7 +15,7 @@ Paclet[
 			Symbols -> {
 				$Downloader,
 				$VersionStringComplete,
-				$WolframPacletSite,
+				$RemotePacletSite,
 				$PartSize,
 				$RequirementFile,
 				ApplyPacletChanges,

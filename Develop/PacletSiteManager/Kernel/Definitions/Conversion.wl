@@ -25,10 +25,13 @@ PacletExpressionConvert[1][paclet_`Paclet] := paclet /. (key_String -> value_) :
 PacletExpressionConvert[1][pacletObject_`PacletObject] := pacletObject //PacletExpressionConvert[2] //PacletExpressionConvert[1]
 
 
-PacletExpressionConvert[3][paclet_`Paclet] := paclet //PacletExpressionConvert[2] //PacletExpressionConvert[3]
+PacletExpressionConvert[3][paclet_`Paclet] := `PacletObject@*Association@@PacletExpressionConvert[2]@paclet
 
 
-$revervedSymbol = {
+PacletExpressionConvert[3][pacletObject_`PacletObject] := paclet
+
+
+$reservedSymbol = {
 	`Name -> "Name",
 	`Version -> "Version",
 	`Extensions -> "Extensions",
@@ -114,7 +117,7 @@ $privateSymbol = {
 
 
 $pacletInfoSymbolConversions = Dispatch[{
-	Sequence@@$revervedSymbol,
+	Sequence@@$reservedSymbol,
 	Sequence@@$systemSymbol,
 	Sequence@@$privateSymbol,
 	v:_Real|_Integer :> ToString[v],

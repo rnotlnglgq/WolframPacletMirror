@@ -1,6 +1,6 @@
 (* ::Package:: *)
 
-$WolframPacletSite = "http://pacletserver2.wolfram.com";
+$RemotePacletSite = "http://pacletserver.wolfram.com";
 
 
 $VersionStringComplete = StringRiffle[#, "."]&@{

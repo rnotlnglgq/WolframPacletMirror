@@ -5,7 +5,7 @@
 
 
 fileNameToURL[fileName_String] := URLBuild@{
-	$WolframPacletSite,
+	StringReplace["pacletserver.wolfram.com" :> "pacletserver2.wolfram.com"]@$RemotePacletSite,
 	"Paclets",
 	URLEncode@fileName
 };
@@ -38,7 +38,7 @@ DownloadRequest[fileName_String] := HTTPRequest[
 ];
 DownloadRequest[`PacletSite] := HTTPRequest[
 	URLBuild@{
-		$WolframPacletSite,
+		StringReplace["pacletserver.wolfram.com" :> "pacletserver2.wolfram.com"]@$RemotePacletSite,
 		"PacletSite.mz"
 	},
 	<|

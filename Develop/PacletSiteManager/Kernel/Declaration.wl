@@ -17,7 +17,7 @@ StringRiffle[%, "\n"]
 
 $Downloader
 $VersionStringComplete
-$WolframPacletSite
+$RemotePacletSite
 $PartSize
 $RequirementFile
 

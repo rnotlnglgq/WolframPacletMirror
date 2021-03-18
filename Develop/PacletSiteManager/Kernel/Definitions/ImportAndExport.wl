@@ -40,7 +40,7 @@ GetSiteInfo[3] := With[
 	{
 		info = SelectFirst[
 			PacletManager`Services`Private`$pacletSiteData,
-			StringContainsQ["pacletserver.wolfram.com"]@*First
+			StringContainsQ[$RemotePacletSite]@*First
 		]
 	},
 	If[MissingQ@info,
