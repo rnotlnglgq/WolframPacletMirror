@@ -27,7 +27,7 @@ jobs:
         /usr/bin/wolframscript -activate
     - name: Install Paclets
       run: |
-        /usr/bin/wolframscript -code 'PacletInstall["CURLLink"];PacletInstall["latest/PacletSiteManager.paclet"]'
+        /usr/bin/wolframscript -code 'PacletInstall["PacletSiteManager", "Site" -> "https://github.com/rnotlnglgq/WolframPacletSiteManager/raw/master"]'
     - name: Set SSH Key
       run: |
         mkdir ~/.ssh/
@@ -36,17 +36,17 @@ jobs:
         echo $'StrictHostKeyChecking no\n UserKnownHostsFile /dev/null\n Host wlgiteeauto\nHostName gitee.com\n User rnotlnglgq\n IdentityFile ~/.ssh/rnotlnglgq_auto' > ~/.ssh/config
     - name: Git Clone
       run: |
-        git clone https://gitee.com/wolframpaclet/WolframPacletSpecial1.git
+        git clone git@wlgiteeauto:rnotlnglgq/WolframPacletMirror1.git
     - name: Update Paclets
       run: |
-        cd WolframPacletSpecial1
+        cd WolframPacletMirror1
         /usr/bin/wolframscript -file '../run.wls'
     - name: Git Push
       run: |
-        cd WolframPacletSpecial1
+        cd WolframPacletMirror1
         rm -rf .git
         git init
-        git remote add origin git@wlgiteeauto:rnotlnglgq/WolframPacletMirror8.git
+        git remote add origin git@wlgiteeauto:rnotlnglgq/WolframPacletMirror1.git
         git config --local user.name rnotlnglgq_auto
         git config --local user.email rnotlnglgq@outlook.com
         git config --local gc.auto 0

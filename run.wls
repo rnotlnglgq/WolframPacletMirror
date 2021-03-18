@@ -9,6 +9,8 @@ cloudSiteInfo = GetSiteInfo@4;
 Print@"\nRequirement:";
 requirement = {All, "12.0.0.0"}& /@ GetRequirementInfo@localSiteInfo;
 Print@ToString@PutRequirementInfo@requirement;
+readme = "```mathematica\n"<>ExportString[List@@@Normal@GetRequirementInfo[], "TSV"]<>"\n```";
+Export["README.MD", readme, "String"];
 requiredPaclet = ListRequiredPaclet[
 	requirement,
 	cloudSiteInfo
