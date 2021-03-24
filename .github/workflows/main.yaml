@@ -56,7 +56,7 @@ jobs:
         git add -A
         git commit -m "auto"
         du -sh .git
-        git push -f origin master
+        git push origin master
       continue-on-error: true
     - name: Git Clone 4
       run: |
@@ -80,7 +80,7 @@ jobs:
         git add -A
         git commit -m "auto"
         du -sh .git
-        git push -f origin master
+        git push origin master
       continue-on-error: true
     - name: Git Clone 5
       run: |
@@ -104,7 +104,7 @@ jobs:
         git add -A
         git commit -m "auto"
         du -sh .git
-        git push -f origin master
+        git push origin master
       continue-on-error: true
     - name: Git Clone 6
       run: |
@@ -128,7 +128,7 @@ jobs:
         git add -A
         git commit -m "auto"
         du -sh .git
-        git push -f origin master
+        git push origin master
       continue-on-error: true
     - name: Git Clone 7
       run: |
@@ -152,7 +152,7 @@ jobs:
         git add -A
         git commit -m "auto"
         du -sh .git
-        git push -f origin master
+        git push origin master
       continue-on-error: true
     - name: Git Clone 8
       run: |
@@ -176,5 +176,5 @@ jobs:
         git add -A
         git commit -m "auto"
         du -sh .git
-        git push -f origin master
+        git push origin master
       continue-on-error: true
