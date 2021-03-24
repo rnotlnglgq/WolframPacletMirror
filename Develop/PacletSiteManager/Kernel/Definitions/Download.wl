@@ -55,7 +55,7 @@ DownloadRequest[`PacletSite] := HTTPRequest[
 		"User" -> None,
 		"Domain" -> StringReplace["pacletserver.wolfram.com" :> "pacletserver2.wolfram.com"]@$RemotePacletSite,
 		"Port" -> None,
-		"Path" -> {"Paclets", "PacletSite.mz"},
+		"Path" -> {"PacletSite.mz"},
 		"Query" -> {},
 		"Fragment" -> None
 	|>,

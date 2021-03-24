@@ -12,7 +12,7 @@
 (*Local: Load from Directory[]*)
 
 
-GetSiteInfo[1] := PacletExpressionConvert[2] @@@ withUniqueContext@ImportString[#, "Package"] & @ Import["PacletSite.mz", {"ZIP", "PacletSite.m", "String"}]
+GetSiteInfo[1] := PacletExpressionConvert[2] /@ withUniqueContext@ImportString[#, "Package"] & @ Import["PacletSite.mz", {"ZIP", "PacletSite.m", "String"}]
 
 
 (* ::Text:: *)
@@ -54,7 +54,7 @@ GetSiteInfo[3] := With[
 (*Cloud: Fetch now*)
 
 
-GetSiteInfo[4] := PacletExpressionConvert[2] @@@ withUniqueContext@ImportString[#, "Package"] &@ImportByteArray[
+GetSiteInfo[4] := PacletExpressionConvert[2] /@ withUniqueContext@ImportString[#, "Package"] &@ImportByteArray[
 	ByteArray@URLRead[DownloadRequest@`PacletSite]["BodyBytes"]
 , {"ZIP", "PacletSite.m", "String"}]
 
