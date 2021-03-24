@@ -34,94 +34,6 @@ jobs:
         unzip -P $GITEE_KEY -d ~/.ssh/ id.zip
         chmod 700 ~/.ssh/rnotlnglgq_auto
         echo $'StrictHostKeyChecking no\n UserKnownHostsFile /dev/null\n Host wlgiteeauto\nHostName gitee.com\n User rnotlnglgq\n IdentityFile ~/.ssh/rnotlnglgq_auto' > ~/.ssh/config
-    - name: Git Clone 3
-      run: |
-        git clone git@wlgiteeauto:rnotlnglgq/WolframPacletMirror3.git
-      continue-on-error: true
-    - name: Update Paclets 3
-      run: |
-        cd WolframPacletMirror3
-        /usr/bin/wolframscript -file '../run.wls'
-      continue-on-error: true
-    - name: Git Push 3
-      run: |
-        cd WolframPacletMirror3
-        git remote add gitee git@wlgiteeauto:rnotlnglgq/WolframPacletMirror3.git
-        git config --local user.name rnotlnglgq_auto
-        git config --local user.email rnotlnglgq@outlook.com
-        git config --local gc.auto 0
-        git config --local http.postBuffer 524288000
-        git add -A
-        git commit -m "auto"
-        du -sh .git
-        git push gitee master
-      continue-on-error: true
-    - name: Git Clone 4
-      run: |
-        git clone git@wlgiteeauto:rnotlnglgq/WolframPacletMirror4.git
-      continue-on-error: true
-    - name: Update Paclets 4
-      run: |
-        cd WolframPacletMirror4
-        /usr/bin/wolframscript -file '../run.wls'
-      continue-on-error: true
-    - name: Git Push 4
-      run: |
-        cd WolframPacletMirror4
-        git remote add gitee git@wlgiteeauto:rnotlnglgq/WolframPacletMirror4.git
-        git config --local user.name rnotlnglgq_auto
-        git config --local user.email rnotlnglgq@outlook.com
-        git config --local gc.auto 0
-        git config --local http.postBuffer 524288000
-        git add -A
-        git commit -m "auto"
-        du -sh .git
-        git push gitee master
-      continue-on-error: true
-    - name: Git Clone 5
-      run: |
-        git clone git@wlgiteeauto:rnotlnglgq/WolframPacletMirror5.git
-      continue-on-error: true
-    - name: Update Paclets 5
-      run: |
-        cd WolframPacletMirror5
-        /usr/bin/wolframscript -file '../run.wls'
-      continue-on-error: true
-    - name: Git Push 5
-      run: |
-        cd WolframPacletMirror5
-        git remote add gitee git@wlgiteeauto:rnotlnglgq/WolframPacletMirror5.git
-        git config --local user.name rnotlnglgq_auto
-        git config --local user.email rnotlnglgq@outlook.com
-        git config --local gc.auto 0
-        git config --local http.postBuffer 524288000
-        git add -A
-        git commit -m "auto"
-        du -sh .git
-        git push gitee master
-      continue-on-error: true
-    - name: Git Clone 6
-      run: |
-        git clone git@wlgiteeauto:rnotlnglgq/WolframPacletMirror6.git
-      continue-on-error: true
-    - name: Update Paclets 6
-      run: |
-        cd WolframPacletMirror6
-        /usr/bin/wolframscript -file '../run.wls'
-      continue-on-error: true
-    - name: Git Push 6
-      run: |
-        cd WolframPacletMirror6
-        git remote add gitee git@wlgiteeauto:rnotlnglgq/WolframPacletMirror6.git
-        git config --local user.name rnotlnglgq_auto
-        git config --local user.email rnotlnglgq@outlook.com
-        git config --local gc.auto 0
-        git config --local http.postBuffer 524288000
-        git add -A
-        git commit -m "auto"
-        du -sh .git
-        git push gitee master
-      continue-on-error: true
     - name: Git Clone 7
       run: |
         git clone git@wlgiteeauto:rnotlnglgq/WolframPacletMirror7.git
@@ -135,28 +47,6 @@ jobs:
       run: |
         cd WolframPacletMirror7
         git remote add gitee git@wlgiteeauto:rnotlnglgq/WolframPacletMirror7.git
-        git config --local user.name rnotlnglgq_auto
-        git config --local user.email rnotlnglgq@outlook.com
-        git config --local gc.auto 0
-        git config --local http.postBuffer 524288000
-        git add -A
-        git commit -m "auto"
-        du -sh .git
-        git push gitee master
-      continue-on-error: true
-    - name: Git Clone 8
-      run: |
-        git clone git@wlgiteeauto:rnotlnglgq/WolframPacletMirror8.git
-      continue-on-error: true
-    - name: Update Paclets 8
-      run: |
-        cd WolframPacletMirror8
-        /usr/bin/wolframscript -file '../run.wls'
-      continue-on-error: true
-    - name: Git Push 8
-      run: |
-        cd WolframPacletMirror8
-        git remote add gitee git@wlgiteeauto:rnotlnglgq/WolframPacletMirror8.git
         git config --local user.name rnotlnglgq_auto
         git config --local user.email rnotlnglgq@outlook.com
         git config --local gc.auto 0
