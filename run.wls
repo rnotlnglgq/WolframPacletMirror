@@ -4,7 +4,7 @@
 readme = StringRiffle[StringTemplate["* ``\n\t* ``"]@@@Normal@GetRequirementInfo[], "\n"];
 Export["README.MD", readme, "String"];
 requiredPaclet = ListRequiredPaclet[
-	requirement,
+	GetRequirementInfo[],
 	GetSiteInfo@4
 ];
 Print@"\nRequired:";
