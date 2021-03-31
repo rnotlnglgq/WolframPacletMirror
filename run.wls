@@ -5,13 +5,13 @@ readme = StringRiffle[StringTemplate["* ``\n\t* ``"]@@@Normal@GetRequirementInfo
 Export["README.MD", readme, "String"];
 requiredPaclet = ListRequiredPaclet[
 	requirement,
-	cloudSiteInfo
+	GetSiteInfo@4
 ];
 Print@"\nRequired:";
 Print@ToString@requiredPaclet;
 pacletChanges = ListPacletChanges[
 	requiredPaclet,
-	localSiteInfo
+	GetSiteInfo@2
 ];
 Print@"\nChanges:";
 Print@ToString@pacletChanges;
