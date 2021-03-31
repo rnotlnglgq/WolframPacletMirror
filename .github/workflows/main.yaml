@@ -34,19 +34,16 @@ jobs:
         unzip -P $GITEE_KEY -d ~/.ssh/ id.zip
         chmod 700 ~/.ssh/rnotlnglgq_auto
         echo $'StrictHostKeyChecking no\n UserKnownHostsFile /dev/null\n Host wlgiteeauto\nHostName gitee.com\n User rnotlnglgq\n IdentityFile ~/.ssh/rnotlnglgq_auto' > ~/.ssh/config
-    - name: Git Clone 2
+    - name: Update Paclets Auto
       run: |
-        git clone git@wlgiteeauto:rnotlnglgq/WolframPacletMirror2.git
-      continue-on-error: true
-    - name: Update Paclets 2
-      run: |
-        cd WolframPacletMirror2
+        mkdir WolframPacletMirrorAuto
+        cp Requirement.wl WolframPacletMirrorAuto/
         /usr/bin/wolframscript -file '../run.wls'
-      continue-on-error: true
-    - name: Git Push 2
+    - name: Git Push Auto
       run: |
-        cd WolframPacletMirror2
-        git remote add gitee git@wlgiteeauto:rnotlnglgq/WolframPacletMirror2.git
+        cd WolframPacletMirrorAuto
+        git init
+        git remote add gitee git@wlgiteeauto:rnotlnglgq/WolframPacletMirrorAuto.git
         git config --local user.name rnotlnglgq_auto
         git config --local user.email rnotlnglgq@outlook.com
         git config --local gc.auto 0
@@ -55,4 +52,3 @@ jobs:
         git commit -m "auto"
         du -sh .git
         git push gitee master
-      continue-on-error: true

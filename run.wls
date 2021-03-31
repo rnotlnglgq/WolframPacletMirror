@@ -1,14 +1,6 @@
 #!/usr/bin/env wolframscript
 (* ::Package:: *)
 
-Print@"\nParts:";
-Print@ToString@CatenateParts[];
-DeleteFile@PacletPartList[];
-localSiteInfo = GetSiteInfo@2;
-cloudSiteInfo = GetSiteInfo@4;
-Print@"\nRequirement:";
-requirement = {All, "12.0.0.0"}& /@ GetRequirementInfo@localSiteInfo;
-Print@ToString@PutRequirementInfo@requirement;
 readme = StringRiffle[StringTemplate["* ``\n\t* ``"]@@@Normal@GetRequirementInfo[], "\n"];
 Export["README.MD", readme, "String"];
 requiredPaclet = ListRequiredPaclet[
