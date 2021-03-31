@@ -37,7 +37,7 @@ jobs:
     - name: Update Paclets Auto
       run: |
         mkdir WolframPacletMirrorAuto
-        cd WolframPacletMirrorAutoWolframPacletMirrorAuto
+        cd WolframPacletMirrorAuto
         mkdir Paclets
         cp ../Requirement.wl ./
         /usr/bin/wolframscript -file '../run.wls'
