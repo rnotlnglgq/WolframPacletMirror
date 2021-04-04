@@ -17,7 +17,7 @@ Blank[Association]]] := Module[
        PacletSiteManager`GetPacletValue["FileName"][#]},
      				PacletSiteManager`DownloadPaclet @ #;
 Print@FileNames[];
-Print@Get@"!ps -ef";
+Print@Import["!ps -ef","String"];
      				If[PacletSiteManager`ValidPacletFileQ[fileName],
       					
       CopyFile[fileName, 
