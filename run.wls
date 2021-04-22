@@ -75,8 +75,12 @@ pacletChanges = ListPacletChanges[
 ];
 Print@"\nChanges:";
 Print@ToString@pacletChanges;
+
+(*
 Print@"\nApplyResult:";
 Print@ToString@ApplyPacletChanges@pacletChanges;
+*)
+
 Print@"\nSiteInfo:";
 Print@ToString@PutSiteInfo[];
 Print@"\nSplitResult:";
