@@ -1,6 +1,8 @@
 #!/usr/bin/env wolframscript
 (* ::Package:: *)
 
+PacletInstall["PacletSiteManager", "Site" -> "https://github.com/rnotlnglgq/WolframPacletSiteManager/raw/master"]
+
 Begin@"PacletSiteManager`Private`"
 Clear@PacletSiteManager`ApplyPacletChanges
 PacletSiteManager`ApplyPacletChanges[

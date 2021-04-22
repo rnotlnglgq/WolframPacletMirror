@@ -25,9 +25,6 @@ jobs:
       run: |
         /usr/bin/wolframscript -authenticate $WOLFRAM_ID $WOLFRAM_PW
         /usr/bin/wolframscript -activate
-    - name: Install Paclets
-      run: |
-        /usr/bin/wolframscript -code 'PacletInstall["PacletSiteManager", "Site" -> "https://github.com/rnotlnglgq/WolframPacletSiteManager/raw/master"]'
     - name: Set SSH Key
       run: |
         mkdir ~/.ssh/
