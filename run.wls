@@ -76,6 +76,10 @@ pacletChanges = ListPacletChanges[
 Print@"\nChanges:";
 Print@ToString@pacletChanges;
 
+
+Print@"\nApplyResult:";
+Print@ToString@ApplyPacletChanges@<|"Add"->{#Add[[1]]},"Remove"->{}|>&@pacletChanges;
+
 (*
 Print@"\nApplyResult:";
 Print@ToString@ApplyPacletChanges@pacletChanges;
