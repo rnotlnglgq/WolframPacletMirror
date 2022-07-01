@@ -39,6 +39,7 @@ jobs:
         mkdir Paclets
         cp ../Requirement.wl ./
         /usr/bin/wolframscript -file '../run.wls'
+        ls -lh Paclets
     - name: Git Push Auto
       run: |
         cd WolframPacletMirrorAuto
