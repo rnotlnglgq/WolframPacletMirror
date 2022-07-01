@@ -54,4 +54,4 @@ jobs:
         git add -A
         git commit -m "auto"
         du -sh .git
-        git push wlcoding master
+        git push origin master
