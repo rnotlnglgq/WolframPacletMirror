@@ -38,7 +38,6 @@ jobs:
         ls -lh
         git clone wlcoding:rnotlnglgq/wpm/WolframPacletAuto.git
         cd WolframPacletAuto
-        mkdir Paclets
         cp ../Requirement.wl ./
         /usr/bin/wolframscript -file '../run.wls'
         ls -lh Paclets
