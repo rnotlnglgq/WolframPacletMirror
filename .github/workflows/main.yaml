@@ -36,26 +36,20 @@ jobs:
     - name: Update Paclets Auto
       run: |
         ls -lh
-        mkdir WolframPacletMirrorAuto
-        cd WolframPacletMirrorAuto
+        git clone wlcoding:rnotlnglgq/wpm/WolframPacletAuto.git
+        cd WolframPacletAuto
         mkdir Paclets
         cp ../Requirement.wl ./
         /usr/bin/wolframscript -file '../run.wls'
         ls -lh Paclets
     - name: Git Push Auto
       run: |
-        cd WolframPacletMirrorAuto
+        cd WolframPacletAuto
         ssh -vT wlcoding
-        git init
-        git remote add wlcoding wlcoding:rnotlnglgq/wpm/WolframPacletAuto.git
-        git config --local user.name rnotlnglgq_auto
-        git config --local user.email rnotlnglgq@outlook.com
-        git config --local gc.auto 0
-        git config --local http.postBuffer 157286400
         git lfs track Paclets/*.paclet
         git lfs track PacletSite.m
         git lfs track PacletSite.mz
         git add -A
         git commit -m "auto"
         du -sh .git
-        git push wlcoding master -f
+        git push wlcoding master

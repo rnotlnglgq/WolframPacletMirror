@@ -1,5 +1,6 @@
 StrictHostKeyChecking no
- UserKnownHostsFile /dev/null
+UserKnownHostsFile /dev/null
+
 Host wlgiteeauto
  HostName gitee.com
  User git

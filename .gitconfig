@@ -5,3 +5,12 @@
     deltaCacheSize = 2047m 
     packSizeLimit = 2047m 
     windowMemory = 2047m
+[init]
+    defaultBranch = master
+[user]
+    name = rnotlnglgq
+    email = rnotlnglgq@outlook.com
+[gc]
+    auto = 0
+[http]
+    postBuffer = 157286400
