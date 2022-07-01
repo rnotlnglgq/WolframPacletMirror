@@ -16,6 +16,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Set SSH Key
+      run: |
+        mkdir ~/.ssh/
+        cp ./config ~/.ssh/
+        unzip -P $GITEE_KEY -d ~/.ssh/ id2.zip
+        chmod 700 ~/.ssh/rnotlnglgq_auto2
     - name: Install Wolfram Engine
       run: |
         wget https://account.wolfram.com/download/public/wolfram-engine/desktop/LINUX
@@ -25,12 +31,6 @@ jobs:
       run: |
         /usr/bin/wolframscript -authenticate $WOLFRAM_ID $WOLFRAM_PW
         /usr/bin/wolframscript -activate
-    - name: Set SSH Key
-      run: |
-        mkdir ~/.ssh/
-        cp ./config ~/.ssh/
-        unzip -P $GITEE_KEY -d ~/.ssh/ id2.zip
-        chmod 700 ~/.ssh/rnotlnglgq_auto2
     - name: Update Paclets Auto
       run: |
         ls -lh
@@ -43,7 +43,7 @@ jobs:
       run: |
         cd WolframPacletMirrorAuto
         git init
-        git remote add gitee wlcoding:rnotlnglgq/wpm/WolframPacletAuto.git
+        git remote add wlcoding wlcoding:rnotlnglgq/wpm/WolframPacletAuto.git
         git config --local user.name rnotlnglgq_auto
         git config --local user.email rnotlnglgq@outlook.com
         git config --local gc.auto 0
@@ -51,4 +51,4 @@ jobs:
         git add -A
         git commit -m "auto"
         du -sh .git
-        git push gitee master -f
+        git push wlcoding master -f
