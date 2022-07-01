@@ -25,13 +25,14 @@ jobs:
         unzip -P $GITEE_KEY -d ~/.ssh/ env/id2.zip
         chmod 700 ~/.ssh/rnotlnglgq_auto2
         ssh -vT wlcoding
+    - name: Configure Git
+      run: |
         cp ../env/.gitconfig ~/
         ls -lh
     - name: Git Clone
       run: |
         git clone wlcoding:rnotlnglgq/wpm/WolframPacletAuto.git
         cp ../env/.gitattributes WolframPacletAuto/
-    - name: Configure Git
     - name: Install Wolfram Engine
       run: |
         wget https://account.wolfram.com/download/public/wolfram-engine/desktop/LINUX
