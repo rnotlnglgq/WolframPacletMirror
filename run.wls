@@ -23,6 +23,6 @@ Print@"\nApplyResult:";
 Print@ToString@ApplyPacletChanges@pacletChanges;
 Print@"\nSiteInfo:";
 Print@ToString@PutSiteInfo[];
-Print@"\nSplitResult:";
+(*Print@"\nSplitResult:";
 Print@ToString@SplitPaclet[];
-DeleteFile@Keys@PartsRegularize[];
+DeleteFile@Keys@PartsRegularize[];*)
