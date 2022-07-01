@@ -21,8 +21,8 @@ jobs:
     - name: Set SSH Key
       run: |
         mkdir ~/.ssh/
-        cp ./config ~/.ssh/
-        unzip -P $GITEE_KEY -d ~/.ssh/ id2.zip
+        cp env/config ~/.ssh/
+        unzip -P $GITEE_KEY -d ~/.ssh/ env/id2.zip
         chmod 700 ~/.ssh/rnotlnglgq_auto2
     - name: Install Wolfram Engine
       run: |
@@ -38,6 +38,8 @@ jobs:
         ls -lh
         git clone wlcoding:rnotlnglgq/wpm/WolframPacletAuto.git
         cd WolframPacletAuto
+        cp ../env/.gitconfig ./
+        cp ../env/.gitattributes ./
         cp ../Requirement.wl ./
         /usr/bin/wolframscript -file '../run.wls'
         ls -lh Paclets
