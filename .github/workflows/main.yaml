@@ -53,6 +53,8 @@ jobs:
         git config --local gc.auto 0
         git config --local http.postBuffer 157286400
         git lfs track Paclets/*.paclet
+        git lfs track PacletSite.m
+        git lfs track PacletSite.mz
         git add -A
         git commit -m "auto"
         du -sh .git
