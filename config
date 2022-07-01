@@ -1,0 +1,10 @@
+StrictHostKeyChecking no
+ UserKnownHostsFile /dev/null
+Host wlgiteeauto
+ HostName gitee.com
+ User git
+ IdentityFile ~/.ssh/rnotlnglgq_auto
+Host wlcoding
+ HostName e.coding.net
+ User git
+ IdentityFile ~/.ssh/rnotlnglgq_auto2
