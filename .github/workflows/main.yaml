@@ -27,12 +27,12 @@ jobs:
         ssh -vT wlcoding
     - name: Configure Git
       run: |
-        cp ../env/.gitconfig ~/
+        cp env/.gitconfig ~/
         ls -lh
     - name: Git Clone
       run: |
         git clone wlcoding:rnotlnglgq/wpm/WolframPacletAuto.git
-        cp ../env/.gitattributes WolframPacletAuto/
+        cp env/.gitattributes WolframPacletAuto/
     - name: Install Wolfram Engine
       run: |
         wget https://account.wolfram.com/download/public/wolfram-engine/desktop/LINUX
